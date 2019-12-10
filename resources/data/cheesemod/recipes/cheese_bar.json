@@ -1,0 +1,28 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"group": "cheese_bar",
+	"ingredients": [
+		{
+			"item": "minecraft:wheat"
+		},
+		{
+			"item": "minecraft:sugar"
+		},
+		{
+			"item": "minecraft:egg"
+		},
+		{
+			"item": "minecraft:paper"
+		},
+		{
+			"item": "minecraft:milk_bucket"
+		},
+		{
+			"item": "cheesemod:item_melted_cheese"
+		}
+	],
+	"result": {
+		"item": "cheesemod:item_cheese_bar",
+		"count": 3
+	}
+}

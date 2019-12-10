@@ -1,0 +1,22 @@
+{
+	"textures": {
+		"particle": "cheesemod:block/cheese_cake_side",
+		"bottom": "cheesemod:block/cheese_cake_bottom",
+		"top": "cheesemod:block/cheese_cake_top",
+		"side": "cheesemod:block/cheese_cake_side",
+		"inside": "cheesemod:block/cheese_cake_inner"
+	},
+	"elements": [{
+			"from": [ 13, 0, 1 ],
+			"to": [ 15, 8, 15 ],
+			"faces": {
+				"down": {"texture": "#bottom", "cullface": "down"},
+				"up": {"texture": "#top"},
+				"north": {"texture": "#side"},
+				"south": {"texture": "#side"},
+				"west": {"texture": "#inside"},
+				"east": {"texture": "#side"}
+			}
+		}
+	]
+}

@@ -1,0 +1,157 @@
+{
+	"parent": "cheesemod:main/fondoe",
+	"display": {
+		"title": {
+			"translate": "advancements.main.challenge_to_cheese_road.title"
+		},
+		"description": {
+			"translate": "advancements.main.challenge_to_cheese_road.description"
+		},
+		"icon": {
+			"item": "cheesemod:item_melted_cheese"
+		},
+		"frame": "challenge",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"cheesed_apple": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:item_cheesed_apple"
+					}
+				]
+			}
+		},
+		"cheesed_baked_potato": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:item_cheesed_baked_potato"
+					}
+				]
+			}
+		},
+		"cheesed_bread": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:item_cheesed_bread"
+					}
+				]
+			}
+		},
+		"cheesed_carrot": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:item_cheesed_carrot"
+					}
+				]
+			}
+		},
+		"cheesed_cooked_beef": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:item_cheesed_cooked_beef"
+					}
+				]
+			}
+		},
+		"cheesed_cooked_chicken": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:item_cheesed_cooked_chicken"
+					}
+				]
+			}
+		},
+		"cheesed_cooked_cod": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:item_cheesed_cooked_cod"
+					}
+				]
+			}
+		},
+		"cheesed_cooked_mutton": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:item_cheesed_cooked_mutton"
+					}
+				]
+			}
+		},
+		"cheesed_cooked_porkchop": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:item_cheesed_cooked_porkchop"
+					}
+				]
+			}
+		},
+		"cheesed_cooked_rabbit": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:item_cheesed_cooked_rabbit"
+					}
+				]
+			}
+		},
+		"cheesed_cooked_salmon": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:item_cheesed_cooked_salmon"
+					}
+				]
+			}
+		},
+		"cheesed_cookie": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:item_cheesed_cookie"
+					}
+				]
+			}
+		}
+	},
+	"rewards": {
+		"experience": 100
+	},
+	"requirements": [
+		["cheesed_apple"],
+		["cheesed_baked_potato"],
+		["cheesed_bread"],
+		["cheesed_carrot"],
+		["cheesed_cooked_beef"],
+		["cheesed_cooked_chicken"],
+		["cheesed_cooked_cod"],
+		["cheesed_cooked_mutton"],
+		["cheesed_cooked_porkchop"],
+		["cheesed_cooked_rabbit"],
+		["cheesed_cooked_salmon"],
+		["cheesed_cookie"]
+	]
+}

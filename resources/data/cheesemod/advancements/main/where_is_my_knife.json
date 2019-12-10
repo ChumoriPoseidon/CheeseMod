@@ -1,0 +1,40 @@
+{
+	"parent": "cheesemod:main/melting",
+	"display": {
+		"title": {
+			"translate": "advancements.main.where_is_my_knife.title"
+		},
+		"description": {
+			"translate": "advancements.main.where_is_my_knife.description"
+		},
+		"icon": {
+			"item": "cheesemod:item_cheese_cake_piece"
+		},
+		"frame": "task",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"cut_cheese_cake": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:item_cheese_cake_piece"
+					}
+				]
+			}
+		}
+	},
+	"rewards": {
+		"recipes": [
+			"cheesemod:cheese_cake_from_piece"
+		]
+	},
+	"requirements": [
+		[
+			"cut_cheese_cake"
+		]
+	]
+}

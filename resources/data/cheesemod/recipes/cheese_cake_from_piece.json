@@ -1,0 +1,33 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"group": "cheese_cake",
+	"ingredients": [
+		{
+			"item": "cheesemod:item_cheese_cake_piece"
+		},
+		{
+			"item": "cheesemod:item_cheese_cake_piece"
+		},
+		{
+			"item": "cheesemod:item_cheese_cake_piece"
+		},
+		{
+			"item": "cheesemod:item_cheese_cake_piece"
+		},
+		{
+			"item": "cheesemod:item_cheese_cake_piece"
+		},
+		{
+			"item": "cheesemod:item_cheese_cake_piece"
+		},
+		{
+			"item": "cheesemod:item_cheese_cake_piece"
+		},
+		{
+			"item": "cheesemod:item_cheese_cake_piece"
+		}
+	],
+	"result": {
+		"item": "cheesemod:block_cheese_cake"
+	}
+}

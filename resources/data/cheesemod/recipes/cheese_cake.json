@@ -1,0 +1,29 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "cheese_cake",
+	"pattern": [
+		"CMC",
+		"SES",
+		"WWW"
+	],
+	"key": {
+		"C": {
+			"item": "cheesemod:item_melted_cheese"
+		},
+		"M": {
+			"item": "minecraft:milk_bucket"
+		},
+		"S": {
+			"item": "minecraft:sugar"
+		},
+		"E": {
+			"item": "minecraft:egg"
+		},
+		"W": {
+			"item": "minecraft:wheat"
+		}
+	},
+	"result": {
+	"item": "cheesemod:block_cheese_cake"
+	}
+}

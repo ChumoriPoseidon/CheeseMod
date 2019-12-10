@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"group": "raw_cheese",
+	"ingredients": [
+		{
+			"item": "minecraft:milk_bucket"
+		},
+		{
+			"item": "cheesemod:item_bacteria"
+		}
+	],
+	"result": {
+		"item": "cheesemod:block_raw_cheese"
+	}
+}

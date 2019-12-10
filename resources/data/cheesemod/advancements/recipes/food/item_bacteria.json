@@ -1,0 +1,32 @@
+{
+	"parent": "cheesemod:recipes/root",
+	"rewards": {
+		"recipes": [
+			"cheesemod:bacteria"
+		]
+	},
+	"criteria": {
+		"has_bacteria": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:item_bacteria"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "cheesemod:bacteria"
+			}
+		}
+	},
+	"requirements": [
+		[
+		"has_bacteria",
+		"has_the_recipe"
+		]
+	]
+}

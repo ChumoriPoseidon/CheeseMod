@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"group": "cheese_burger",
+	"ingredients": [
+		{
+			"item": "minecraft:bread"
+		},
+		{
+			"item": "minecraft:cooked_beef"
+		},
+		{
+			"item": "minecraft:grass"
+		},
+		{
+			"item": "cheesemod:item_melted_cheese"
+		}
+	],
+	"result": {
+		"item": "cheesemod:item_cheese_burger"
+	}
+}

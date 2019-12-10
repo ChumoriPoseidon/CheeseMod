@@ -1,0 +1,12 @@
+{
+	"variants": {
+		"age=0": { "model": "cheesemod:block/block_raw_cheese_age0" },
+		"age=1": { "model": "cheesemod:block/block_raw_cheese_age0" },
+		"age=2": { "model": "cheesemod:block/block_raw_cheese_age0" },
+		"age=3": { "model": "cheesemod:block/block_raw_cheese_age1" },
+		"age=4": { "model": "cheesemod:block/block_raw_cheese_age1" },
+		"age=5": { "model": "cheesemod:block/block_raw_cheese_age1" },
+        "age=6": { "model": "cheesemod:block/block_raw_cheese_age2" },
+        "age=7": { "model": "cheesemod:block/block_raw_cheese_age2" }
+	}
+}

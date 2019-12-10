@@ -1,0 +1,26 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "fermented_barrel",
+	"pattern": [
+		"PSP",
+		"PBP",
+		"PFP"
+	],
+	"key": {
+		"P": {
+			"tag": "minecraft:planks"
+		},
+		"S": {
+			"tag": "minecraft:wooden_slabs"
+		},
+		"B": {
+			"item": "minecraft:bucket"
+		},
+		"F": {
+			"item": "minecraft:furnace"
+		}
+	},
+	"result": {
+	"item": "cheesemod:block_fermented_barrel"
+	}
+}
