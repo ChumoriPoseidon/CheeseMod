@@ -6,12 +6,12 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "cheesemod:block_whole_cheese"
+					"name": "cheesemod:block_cheese_fondue_pot"
 				}
 			],
 			"conditions": [
 				{
-				"condition": "minecraft:survives_explosion"
+					"condition": "minecraft:survives_explosion"
 				}
 			]
 		}

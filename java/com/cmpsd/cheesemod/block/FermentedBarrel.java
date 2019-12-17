@@ -1,11 +1,9 @@
 package com.cmpsd.cheesemod.block;
 
-import java.util.List;
 import java.util.Random;
 
 import com.cmpsd.cheesemod.CheeseMod.RegistryEvents;
 import com.cmpsd.cheesemod.tileentity.FermentedBarrelTileEntity;
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -20,7 +18,6 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
@@ -33,7 +30,6 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootContext.Builder;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -70,11 +66,6 @@ public class FermentedBarrel extends ContainerBlock {
 			}
 		}
 		return true;
-	}
-
-	@Override
-	public List<ItemStack> getDrops(BlockState state, Builder builder) {
-		return Lists.newArrayList();
 	}
 
 	@SuppressWarnings("deprecation")

@@ -22,6 +22,9 @@
 
 	"container.cheesemod.fermented_barrel": "発酵樽",
 
+	"fluid.cheesemod.fluid_liquid_cheese_still": "ドロドロチーズ",
+	"fluid.cheesemod.fluid_liquid_cheese_flow": "ドロドロチーズ",
+
 	"advancements.main.root.title": "チーズMod",
 	"advancements.main.root.description": "チーズを味わう",
 		"advancements.main.first_cheese.title": "初めてのチーズ",

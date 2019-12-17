@@ -22,6 +22,9 @@
 
 	"container.cheesemod.fermented_barrel": "Fermented Barrel",
 
+	"fluid.cheesemod.fluid_liquid_cheese_still": "Liquid Cheese",
+	"fluid.cheesemod.fluid_liquid_cheese_flow": "Liquid Cheese",
+
 	"advancements.main.root.title": "Cheese Mod",
 	"advancements.main.root.description": "Taste cheese.",
 		"advancements.main.first_cheese.title": "First cheese",

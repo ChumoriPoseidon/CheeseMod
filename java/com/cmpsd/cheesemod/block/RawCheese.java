@@ -57,7 +57,6 @@ public class RawCheese extends Block {
 //				}
 //			}
 //			else {
-//				player.sendMessage(new StringTextComponent("AGE: " + state.get(AGE)));
 				player.sendStatusMessage(new StringTextComponent(new TranslationTextComponent("block.cheesemod.block_raw_cheese.get_age").getFormattedText() + (state.get(AGE) + 1) + " / 8"), true);
 //			}
 		}

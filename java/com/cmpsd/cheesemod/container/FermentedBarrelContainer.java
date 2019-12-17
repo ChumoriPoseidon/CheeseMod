@@ -124,7 +124,6 @@ public class FermentedBarrelContainer extends Container {
 			}
 			return false;
 		}).orElse(false)) {
-			System.out.println("NAME: " + stack.getDisplayName().getFormattedText());
 			return true;
 		}
 		Item item = stack.getItem();
