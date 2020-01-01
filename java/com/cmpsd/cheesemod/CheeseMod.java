@@ -80,6 +80,7 @@ public class CheeseMod {
 
 		// Register ourselves for server and other game events we are interested in
 		MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.register(new ModEvent());
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {
@@ -135,7 +136,7 @@ public class CheeseMod {
 		public static Item CHEESE_BAR;
 
 		public static Item BACTERIA;
-//		public static Item POCKET_CHEESE_FONDUE;
+		public static Item CHEESE_IN_BOWL;
 
 
 		// Block
@@ -175,7 +176,6 @@ public class CheeseMod {
 
         };
 
-
 		@SubscribeEvent
 		public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
 			// register a new item here
@@ -211,6 +211,8 @@ public class CheeseMod {
 			ITEMS.add(CHEESE_BURGER);
 			ITEMS.add(CHEESE_BAR);
 
+			CHEESE_IN_BOWL = new Item(new Item.Properties().group(CHEESE_MOD_GROUP)).setRegistryName("item_cheese_in_bowl");
+			ITEMS.add(CHEESE_IN_BOWL);
 			BACTERIA = new Bacteria();
 
 			LIQUID_CHEESE_BUCKET = new BucketItem(() -> LIQUID_CHEESE_FLUID, new Item.Properties().containerItem(Items.BUCKET).maxStackSize(1).group(RegistryEvents.CHEESE_MOD_GROUP)).setRegistryName("item_liquid_cheese_bucket");

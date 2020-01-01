@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "cheesemod:item/pocket_cheese_fondue"
+        "layer0": "cheesemod:item/cheese_in_bowl"
     }
 }
