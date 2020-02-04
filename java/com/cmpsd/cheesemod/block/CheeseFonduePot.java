@@ -17,6 +17,7 @@ import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer.Builder;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -50,48 +51,42 @@ public class CheeseFonduePot extends Block {
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		ItemStack stack = player.getHeldItem(handIn);
-		if(!worldIn.isRemote) {
+		if(worldIn.isRemote) {
+			return !stack.isEmpty();
+		}
+		else {
 			if(!stack.isEmpty()) {
 				int meta = state.get(LEVEL);
 				int max = 8;
+				if(meta > 0) {
+					if(meta == max && this.unloadCheese(state, worldIn, pos, player, handIn, stack, meta)) {
+						return true;
+					}
+					if(this.cookCheesedFood(state, worldIn, pos, player, stack, meta, max)) {
+						return true;
+					}
+				}
 				if(meta < max) {
 					if(this.meltCheese(state, worldIn, pos, player, handIn, stack, meta, max)) {
 						return true;
 					}
 				}
-				if(meta > 0 && meta <= max) {
-					if(this.cookCheesedFood(state, worldIn, pos, player, stack, meta, max)) {
-						return true;
-					}
-					if(meta == max && this.unloadCheese(state, worldIn, pos, player, handIn, stack, meta)) {
-						return true;
-					}
-				}
 			}
 		}
-		return true;
+		return false;
 	}
 
-	private boolean meltCheese(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack stack, int meta, int max) {
-		Item item = stack.getItem();
-		if(item == RegistryEvents.MELTED_CHEESE) {
-			world.setBlockState(pos, state.with(LEVEL, Integer.valueOf(Math.min(meta + 4, max))), 3);
-			stack.shrink(1);
-			return true;
-		}
-		if(item == RegistryEvents.CHEESE_PIECE) {
-			world.setBlockState(pos, state.with(LEVEL, Integer.valueOf(Math.min(meta + 1, max))), 3);
-			stack.shrink(1);
-			return true;
-		}
+	private boolean unloadCheese(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack stack, int meta) {
 		if(stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).map(handler -> {
 			FluidStack fluidStack = handler.drain(FluidAttributes.BUCKET_VOLUME, FluidAction.SIMULATE);
-			if(!fluidStack.isEmpty() && fluidStack.getFluid() == RegistryEvents.LIQUID_CHEESE_FLUID) {
-				return FluidUtil.interactWithFluidHandler(player, hand, new FluidTank(FluidAttributes.BUCKET_VOLUME));
+			if(fluidStack.isEmpty()) {
+				FluidTank tank = new FluidTank(FluidAttributes.BUCKET_VOLUME);
+				tank.setFluid(new FluidStack(RegistryEvents.LIQUID_CHEESE_FLUID, FluidAttributes.BUCKET_VOLUME));
+				return FluidUtil.interactWithFluidHandler(player, hand, tank);
 			}
 			return false;
 		}).orElse(false)) {
-			world.setBlockState(pos, state.with(LEVEL, Integer.valueOf(max)), 3);
+			world.setBlockState(pos, this.getDefaultState(), 3);
 			return true;
 		}
 		return false;
@@ -101,13 +96,51 @@ public class CheeseFonduePot extends Block {
 		if(this.canCook(world, pos)) {
 			ItemStack result = getCookResult(stack);
 			if(!result.isEmpty()) {
+				stack.shrink(1);
 				ItemHandlerHelper.giveItemToPlayer(player, result);
 				world.setBlockState(pos, state.with(LEVEL, Integer.valueOf(meta - 1)), 3);
-				stack.shrink(1);
 				return true;
 			}
 			if(stack.getItem() == Items.BOWL) {
+				stack.shrink(1);
+				ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(RegistryEvents.CHEESE_IN_BOWL));
+				world.setBlockState(pos, state.with(LEVEL, Integer.valueOf(meta - 1)), 3);
+				return true;
+			}
+		}
+		else {
+			if(stack.getItem() == Items.STICK) {
+				ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(RegistryEvents.CHEESE_PIECE, meta));
+				world.setBlockState(pos, this.getDefaultState(), 3);
+				return true;
+			}
+			player.sendStatusMessage(new TranslationTextComponent("block.cheesemod.block_cheese_fondue_pot.cant_cook"), true);
+		}
+		return false;
+	}
 
+	private boolean meltCheese(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack stack, int meta, int max) {
+		if(this.canCook(world, pos)) {
+			Item item = stack.getItem();
+			if(item == RegistryEvents.MELTED_CHEESE) {
+				world.setBlockState(pos, state.with(LEVEL, Integer.valueOf(Math.min(meta + 4, max))), 3);
+				stack.shrink(1);
+				return true;
+			}
+			if(item == RegistryEvents.CHEESE_PIECE) {
+				world.setBlockState(pos, state.with(LEVEL, Integer.valueOf(Math.min(meta + 1, max))), 3);
+				stack.shrink(1);
+				return true;
+			}
+			if(stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).map(handler -> {
+				FluidStack fluidStack = handler.drain(FluidAttributes.BUCKET_VOLUME, FluidAction.SIMULATE);
+				if(!fluidStack.isEmpty() && fluidStack.getFluid() == RegistryEvents.LIQUID_CHEESE_FLUID) {
+					return FluidUtil.interactWithFluidHandler(player, hand, new FluidTank(FluidAttributes.BUCKET_VOLUME));
+				}
+				return false;
+			}).orElse(false)) {
+				world.setBlockState(pos, state.with(LEVEL, Integer.valueOf(max)), 3);
+				return true;
 			}
 		}
 		else {
@@ -118,7 +151,10 @@ public class CheeseFonduePot extends Block {
 
 	private boolean canCook(World world, BlockPos pos) {
 		Block block = world.getBlockState(pos.down()).getBlock();
-		if(block == Blocks.BLAST_FURNACE || block == Blocks.FIRE || block == Blocks.MAGMA_BLOCK || block == Blocks.LAVA) {
+		if(block == Blocks.FURNACE || block == Blocks.BLAST_FURNACE || block == Blocks.SMOKER || block == Blocks.CAMPFIRE) {
+			return world.getBlockState(pos.down()).get(BlockStateProperties.LIT);
+		}
+		if(block == Blocks.FIRE || block == Blocks.MAGMA_BLOCK || block == Blocks.LAVA) {
 			return true;
 		}
 		return world.getBiome(pos) == Biomes.NETHER;
@@ -138,27 +174,6 @@ public class CheeseFonduePot extends Block {
 		if(stack.isItemEqual(new ItemStack(Items.COOKED_SALMON))) return new ItemStack(RegistryEvents.CHEESED_COOKED_SALMON);
 		if(stack.isItemEqual(new ItemStack(Items.COOKIE))) return new ItemStack(RegistryEvents.CHEESED_COOKIE);
 		return ItemStack.EMPTY;
-	}
-
-	private boolean unloadCheese(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack stack, int meta) {
-		if(stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).map(handler -> {
-			FluidStack fluidStack = handler.drain(FluidAttributes.BUCKET_VOLUME, FluidAction.SIMULATE);
-			if(fluidStack.isEmpty()) {
-				FluidTank tank = new FluidTank(FluidAttributes.BUCKET_VOLUME);
-				tank.setFluid(new FluidStack(RegistryEvents.LIQUID_CHEESE_FLUID, FluidAttributes.BUCKET_VOLUME));
-				return FluidUtil.interactWithFluidHandler(player, hand, tank);
-			}
-			return false;
-		}).orElse(false)) {
-			world.setBlockState(pos, this.getDefaultState(), 3);
-			return true;
-		}
-		if(!this.canCook(world, pos) && stack.getItem() == Items.STICK) {
-			ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(RegistryEvents.CHEESE_PIECE, meta));
-			world.setBlockState(pos, this.getDefaultState(), 3);
-			return true;
-		}
-		return false;
 	}
 
 	@Override

@@ -1,8 +1,8 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "particle": "cheesemod:block/cheese_fondue_pot_pot_side",
-        "top": "cheesemod:block/cheese_fondue_pot_pot_top",
+        "particle": "cheesemod:block/cheese_fondue_pot_side",
+        "top": "cheesemod:block/cheese_fondue_pot_top",
         "bottom": "cheesemod:block/cheese_fondue_pot_bottom",
         "side": "cheesemod:block/cheese_fondue_pot_side",
         "inside": "cheesemod:block/cheese_fondue_pot_inside",

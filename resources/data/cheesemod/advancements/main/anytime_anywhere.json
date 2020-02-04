@@ -1,0 +1,35 @@
+{
+	"parent": "cheesemod:main/fondoe",
+	"display": {
+		"title": {
+			"translate": "advancements.main.anytime_anywhere.title"
+		},
+		"description": {
+			"translate": "advancements.main.anytime_anywhere.description"
+		},
+		"icon": {
+			"item": "cheesemod:item_cheese_in_bowl"
+		},
+		"frame": "task",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"get_cheese_in_bowl": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:item_cheese_in_bowl"
+					}
+				]
+			}
+		}
+	},
+	"requirements": [
+		[
+			"get_cheese_in_bowl"
+		]
+	]
+}

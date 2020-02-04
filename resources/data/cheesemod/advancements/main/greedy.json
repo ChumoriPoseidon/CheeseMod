@@ -1,0 +1,28 @@
+{
+	"parent": "cheesemod:main/anytime_anywhere",
+	"display": {
+		"title": {
+			"translate": "advancements.main.greedy.title"
+		},
+		"description": {
+			"translate": "advancements.main.greedy.description"
+		},
+		"icon": {
+			"item": "cheesemod:item_cheese_in_bowl"
+		},
+		"frame": "challenge",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": true
+	},
+	"criteria": {
+		"on_code": {
+			"trigger": "minecraft:impossible"
+		}
+	},
+	"requirements": [
+		[
+			"on_code"
+		]
+	]
+}

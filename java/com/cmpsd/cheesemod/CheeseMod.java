@@ -244,7 +244,7 @@ public class CheeseMod {
 							if(!result.isEmpty()) {
 								result.setCount(Math.min(stack.getCount(), 10));
 								stack.shrink(result.getCount());
-								if(this.RANDOM.nextInt(11 - result.getCount()) == 0) {
+								if(this.RANDOM.nextInt(Math.max(11 - result.getCount(), 0) ) == 0) {
 								worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
 								}
 								ItemEntity itemEntity = new ItemEntity(worldIn, entityIn.posX, entityIn.posY, entityIn.posZ, result);
