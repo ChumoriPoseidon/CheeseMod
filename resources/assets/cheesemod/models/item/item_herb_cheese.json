@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "cheesemod:item/herb_cheese"
+        "layer0": "cheesemod:items/herb_cheese"
     }
 }

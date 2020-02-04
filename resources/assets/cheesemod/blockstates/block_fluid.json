@@ -1,0 +1,12 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "forge:fluid",
+		"transform": "forge:default-item"
+	},
+	"variants": {
+		"melted_cheese": [{
+			"custom": { "fluid": "melted_cheese"}
+		}]
+	}
+}

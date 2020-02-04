@@ -1,5 +1,5 @@
 {
-	"variants": {
-		"": { "model": "cheesemod:block/block_whole_cheese" }
+   	"variants": {
+		"normal": { "model": "cheesemod:whole_cheese" }
 	}
 }

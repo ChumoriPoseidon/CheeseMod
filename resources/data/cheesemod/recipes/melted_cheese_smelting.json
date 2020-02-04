@@ -1,9 +1,0 @@
-{
-	"type": "minecraft:smelting",
-	"ingredient": {
-		"item": "cheesemod:item_cheese"
-	},
-	"result": "cheesemod:item_melted_cheese",
-	"experience": 0.35,
-	"cookingtime": 200
-}

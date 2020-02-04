@@ -1,0 +1,21 @@
+{
+	"parent": "block/block",
+	"textures": {
+		"particle": "cheesemod:blocks/whole_cheese_updown",
+		"updown": "cheesemod:blocks/whole_cheese_updown",
+		"side": "cheesemod:blocks/whole_cheese_side"
+	},
+	"elements": [{
+			"from": [ 1, 0, 1 ],
+			"to": [ 15, 7, 15 ],
+			"faces": {
+				"down": { "texture": "#updown" },
+				"up": { "texture": "#updown" },
+				"north": { "texture": "#side" },
+				"south": { "texture": "#side" },
+				"west": { "texture": "#side" },
+				"east": { "texture": "#side" }
+			}
+		}
+	]
+}

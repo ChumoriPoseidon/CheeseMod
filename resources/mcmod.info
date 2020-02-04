@@ -1,0 +1,16 @@
+[
+{
+  "modid": "cheesemod",
+  "name": "Cheese Mod",
+  "description": "This mod adds variety cheeses.",
+  "version": "1.0.0a_1.12.2",
+  "mcversion": "${version}",
+  "url": "http://forum.minecraftuser.jp/viewtopic.php?f=13&t=27077",
+  "updateUrl": "",
+  "authorList": ["Poseidon(chumori)"],
+  "credits": "Poseidon(chumori)",
+  "logoFile": "assets/cheesemod/textures/cheesemod_logo.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]

@@ -1,0 +1,74 @@
+itemGroup.CheeseMod=CheeseMod
+
+
+item.cheesed=Cheesed
+
+item.cheese.name=Cheese
+item.cheesePiece.name=Cheese Piece
+item.meltedCheese.name=Melted Cheese
+item.cheesedApple.name=Cheesed Apple
+item.cheesedBakedPotato.name=Cheesed Baked Potato
+item.cheesedBread.name=Cheesed Bread
+item.cheesedCarrot.name=Cheesed Carrot
+item.cheesedCookedBeef.name=Cheesed Cooked Beef
+item.cheesedCookedChicken.name=Cheesed Cooked Chicken
+item.cheesedCookedCod.name=Cheesed Cooked Cod
+item.cheesedCookedMutton.name=Cheesed Cooked Mutton
+item.cheesedCookedPorkchop.name=Cheesed Cooked Porkchop
+item.cheesedCookedRabbit.name=Cheesed Cooked Rabbit
+item.cheesedCookedSalmon.name=Cheesed Cooked Salmon
+item.cheesedCookie.name=Cheesed Cookie
+item.cheeseCakePiece.name=Cheese Cake
+item.cheeseBurger.name=Cheese Burger
+
+item.bacteria.name=Bacteria
+item.pocketCheeseFondue.name=Pocket Cheese Fondue
+item.cheeseBar.name=Cheese Bar
+
+fluid.meltedCheese=Liquid Melted Cheese
+
+item.herbCheese.name=Herb Cheese
+item.cheesedBoiledEgg.name=Cheesed Boiled Egg
+item.cheesedBoiledSausage.name=Cheesed Boiled Sausage
+item.pizzaBread.name=Pizza Bread
+
+item.cheesedBoiledCrabLeg.name=Cheesed Boiled Crab Leg
+item.cheesedChocolateBar.name=Cheesed Chocolate Bar
+item.cheesedChocolateCookie.name=Cheesed Chocolate Cookie
+item.cheesedMilkCookie.name=Cheesed Milk Cookie
+
+tile.rawCheese.name=Raw Cheese
+tile.rawCheese.getAge=Age:
+tile.wholeCheese.name=Whole Cheese
+tile.cheeseCake.name=Cheese Cake
+tile.cheeseFondue.name=Cheese Fondue Pot
+tile.barrel.name=Barrel
+
+tile.liquidMeltedCheese.name=Liquid Melted Cheese
+
+container.barrel=Barrel
+
+advancements.main.root.title=Cheese Mod
+advancements.main.root.description=Taste cheese.
+advancements.main.first_cheese.title=First cheese
+advancements.main.first_cheese.description=Make whole cheese from raw cheese in maturing.
+advancements.main.melting.title=Melting
+advancements.main.melting.description=Smelt cheese.
+advancements.main.fondoe.title=Do + Fondue = Fondoe
+advancements.main.fondoe.description=Cook some cheesed food on cheese fondue pot
+advancements.main.anytime_anywhere.title=Anytime, Anywhere
+advancements.main.anytime_anywhere.description=Scoop cheese from pot with bowl.
+advancements.main.greedy.title=Greedy
+advancements.main.greedy.description=Eat cheesed food with more cheese.
+advancements.main.covered_with_cheese.title=Covered with cheese
+advancements.main.covered_with_cheese.description=Fill bucket with cheese.
+advancements.main.challenge_to_cheese_road.title=Challenge to "Cheese Road"
+advancements.main.challenge_to_cheese_road.description=Cook all cheesed food.
+advancements.main.where_is_my_knife.title=Where is my knife?
+advancements.main.where_is_my_knife.description=Cut cheese cake with someone instead of knife.
+advancements.main.power_of_bacteria.title=Power of bacteria
+advancements.main.power_of_bacteria.description=Get bacteria.
+advancements.main.multiply.title=Multiply
+advancements.main.multiply.description=Make barrel to multiply bacteria.
+advancements.main.cheese_craftsman.title=Cheese craftsman
+advancements.main.cheese_craftsman.description=Hold armful of whole cheeses.

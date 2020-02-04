@@ -1,0 +1,41 @@
+{
+	"parent": "cheesemod:main/first_cheese",
+	"display": {
+		"title": {
+			"translate": "advancements.main.power_of_bacteria.title"
+		},
+		"description": {
+			"translate": "advancements.main.power_of_bacteria.description"
+		},
+		"icon": {
+			"item": "cheesemod:item_bacteria"
+		},
+		"frame": "task",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"get_bacteria": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:item_bacteria"
+					}
+				]
+			}
+		}
+	},
+	"rewards": {
+		"recipes": [
+			"cheesemod:barrel",
+			"cheesemod:raw_cheese2"
+		]
+	},
+	"requirements": [
+		[
+			"get_bacteria"
+		]
+	]
+}

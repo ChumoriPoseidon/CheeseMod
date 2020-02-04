@@ -1,0 +1,28 @@
+{
+	"type": "forge:ore_shaped",
+	"group": "barrel",
+	"pattern": [
+		"PSP",
+		"PBP",
+		"PFP"
+	],
+	"key": {
+		"P": {
+			"type": "forge:ore_dict",
+            "ore": "plankWood"
+		},
+		"S": {
+			"type": "forge:ore_dict",
+            "ore": "slabWood"
+		},
+		"B": {
+			"item": "minecraft:bucket"
+		},
+		"F": {
+			"item": "minecraft:furnace"
+		}
+	},
+	"result": {
+	"item": "cheesemod:block_barrel"
+	}
+}

@@ -1,0 +1,41 @@
+{
+	"display": {
+		"title": {
+			"translate": "advancements.main.root.title"
+		},
+		"description": {
+			"translate": "advancements.main.root.description"
+		},
+		"icon": {
+			"item": "minecraft:milk_bucket"
+		},
+		"background": "minecraft:textures/blocks/planks_oak.png",
+		"frame": "task",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"get_milk": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "minecraft:milk_bucket"
+					}
+				]
+			}
+		}
+	},
+	"rewards": {
+		"recipes": [
+			"cheesemod:raw_cheese0",
+			"cheesemod:raw_cheese1"
+		]
+	},
+	"requirements": [
+		[
+			"get_milk"
+		]
+	]
+}

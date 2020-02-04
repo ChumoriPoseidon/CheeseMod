@@ -1,11 +1,12 @@
 {
     "variants": {
-        "bites=0": { "model": "cheesemod:block/block_cheese_cake_slice0" },
-        "bites=1": { "model": "cheesemod:block/block_cheese_cake_slice1" },
-        "bites=2": { "model": "cheesemod:block/block_cheese_cake_slice2" },
-        "bites=3": { "model": "cheesemod:block/block_cheese_cake_slice3" },
-        "bites=4": { "model": "cheesemod:block/block_cheese_cake_slice4" },
-        "bites=5": { "model": "cheesemod:block/block_cheese_cake_slice5" },
-        "bites=6": { "model": "cheesemod:block/block_cheese_cake_slice6" }
+        "bites=0": { "model": "cheesemod:cheese_cake_slice0" },
+        "bites=1": { "model": "cheesemod:cheese_cake_slice1" },
+        "bites=2": { "model": "cheesemod:cheese_cake_slice2" },
+        "bites=3": { "model": "cheesemod:cheese_cake_slice3" },
+        "bites=4": { "model": "cheesemod:cheese_cake_slice4" },
+        "bites=5": { "model": "cheesemod:cheese_cake_slice5" },
+        "bites=6": { "model": "cheesemod:cheese_cake_slice6" },
+        "bites=7": { "model": "cheesemod:cheese_cake_slice7" }
     }
 }

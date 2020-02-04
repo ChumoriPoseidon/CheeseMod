@@ -1,0 +1,10 @@
+{
+   	"variants": {
+		"normal": [
+		{ "model": "cheesemod:barrel" },
+		{ "model": "cheesemod:barrel", "y": 90 },
+		{ "model": "cheesemod:barrel", "y": 180 },
+		{ "model": "cheesemod:barrel", "y": 270 }
+		]
+	}
+}

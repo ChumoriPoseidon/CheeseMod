@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "cheesemod:item/cheesed_boiled_sausage"
+        "layer0": "cheesemod:items/cheesed_boiled_sausage"
     }
 }

@@ -1,0 +1,38 @@
+{
+	"parent": "cheesemod:main/power_of_bacteria",
+	"display": {
+		"title": {
+			"translate": "advancements.main.multiply.title"
+		},
+		"description": {
+			"translate": "advancements.main.multiply.description"
+		},
+		"icon": {
+			"item": "cheesemod:block_barrel"
+		},
+		"frame": "goal",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"get_barrel": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "cheesemod:block_barrel"
+					}
+				]
+			}
+		}
+	},
+	"rewards": {
+		"experience": 50
+	},
+	"requirements": [
+		[
+			"get_barrel"
+		]
+	]
+}

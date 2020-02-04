@@ -1,0 +1,37 @@
+{
+	"parent": "cheesemod:main/fondoe",
+	"display": {
+		"title": {
+			"translate": "advancements.main.covered_with_cheese.title"
+		},
+		"description": {
+			"translate": "advancements.main.covered_with_cheese.description"
+		},
+		"icon": {
+            "item": "forge:bucketfilled",
+            "nbt": "{FluidName:\"melted_cheese\",Amount:1000}"
+        },
+		"frame": "task",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"get_liquid_cheese_bucket": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "forge:bucketfilled",
+						"nbt": "{FluidName:\"melted_cheese\",Amount:1000}"
+					}
+				]
+			}
+		}
+	},
+	"requirements": [
+		[
+			"get_liquid_cheese_bucket"
+		]
+	]
+}
