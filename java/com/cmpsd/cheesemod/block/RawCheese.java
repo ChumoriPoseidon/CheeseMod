@@ -57,7 +57,7 @@ public class RawCheese extends Block {
 //				}
 //			}
 //			else {
-				player.sendStatusMessage(new StringTextComponent(new TranslationTextComponent("block.cheesemod.block_raw_cheese.get_age").getFormattedText() + (state.get(AGE) + 1) + " / 8"), true);
+				player.sendStatusMessage(new StringTextComponent(new TranslationTextComponent("block.cheesemod.block_raw_cheese.get_age").getFormattedText() + state.get(AGE) + " / 8"), true);
 //			}
 		}
 		return true;
@@ -82,7 +82,13 @@ public class RawCheese extends Block {
 
 	private float getChance(BlockState state, World world, BlockPos pos) {
 		float chance = 1.0F;
-		if(!world.canBlockSeeSky(pos)) {
+//		if(!world.canBlockSeeSky(pos)) {
+//			chance += 1.0F;
+//		}
+//		if(world.getChunk(pos).getWorldLightManager().getLightEngine(LightType.SKY).getLightFor(pos) < 9) {
+//			chance += 1.0F;
+//		}
+		if(world.getLightSubtracted(pos, 0) < 13) {
 			chance += 1.0F;
 		}
 		switch(world.getBiome(pos).getCategory()) {
@@ -91,7 +97,6 @@ public class RawCheese extends Block {
 		case SAVANNA:
 			chance /= 2.0F;
 			break;
-		case JUNGLE:
 		case SWAMP:
 			chance += 2.0F;
 			break;

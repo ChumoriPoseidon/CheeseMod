@@ -4,4 +4,4 @@ This mod adds variety cheese items and blocks.
 
 ## Current support version / 対応バージョン
 - Minecraft 1.14.4  
-- Minecraft Forge 1.14.4-28.1.0+
+- Minecraft Forge 1.14.4-28.2.0+
