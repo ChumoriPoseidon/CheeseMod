@@ -28,7 +28,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDesert;
-import net.minecraft.world.biome.BiomeJungle;
 import net.minecraft.world.biome.BiomeMesa;
 import net.minecraft.world.biome.BiomeMushroomIsland;
 import net.minecraft.world.biome.BiomeSavanna;
@@ -80,14 +79,14 @@ public class RawCheese extends Block {
 
 	private float getChance(World worldIn, IBlockState state, BlockPos pos) {
 		float chance = 1.0F;
-		if(!worldIn.canSeeSky(pos)) {
+		if(worldIn.getLightFromNeighbors(pos.up()) < 13) {
 			chance += 1.0F;
 		}
 		Biome biome = worldIn.getBiome(pos);
 		if(biome instanceof BiomeDesert || biome instanceof BiomeMesa || biome instanceof BiomeSavanna) {
 			chance /= 2.0F;
 		}
-		else if(biome instanceof BiomeJungle || biome instanceof BiomeSwamp) {
+		else if(biome instanceof BiomeSwamp) {
 			chance += 2.0F;
 		}
 		else if(biome instanceof BiomeMushroomIsland) {

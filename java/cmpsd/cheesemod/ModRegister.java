@@ -21,7 +21,6 @@ public class ModRegister {
 	public void registerItems(RegistryEvent.Register<Item> event) {
 
 		ModItem.register();
-		ModPotion.register();
 		if(ModPlugin.loadedHaC) {
 
 			PluginHaC.registerItems();
