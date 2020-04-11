@@ -4,7 +4,11 @@ import java.util.Random;
 
 import cmpsd.cheesemod.ModBlock;
 import cmpsd.cheesemod.ModItem;
+import cmpsd.cheesemod.ModPlugin;
 import cmpsd.cheesemod.ModTab;
+import defeatedcrow.hac.api.climate.ClimateAPI;
+import defeatedcrow.hac.api.climate.DCHumidity;
+import defeatedcrow.hac.api.climate.IClimate;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -48,6 +52,7 @@ public class RawCheese extends Block {
 		this.setSoundType(SoundType.CLOTH);
 		this.setHardness(0.5F);
 		this.setResistance(0.5F);
+		this.setTickRandomly(true);
 
 		ModItem.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
 		ModBlock.BLOCKS.add(this);
@@ -71,7 +76,7 @@ public class RawCheese extends Block {
 //				}
 //			}
 //			else {
-				playerIn.sendStatusMessage(new TextComponentString(new TextComponentTranslation("tile.rawCheese.getAge", new Object[0]).getFormattedText() + " " + (((Integer)state.getValue(AGE)).intValue() + 1) + " / 8"), true);
+				playerIn.sendStatusMessage(new TextComponentString(new TextComponentTranslation("tile.rawCheese.getAge", new Object[0]).getFormattedText() + " " + ((Integer)state.getValue(AGE)).intValue() + " / 8"), true);
 //			}
 		}
 		return true;
@@ -94,6 +99,21 @@ public class RawCheese extends Block {
 		}
 		else {
 			chance += 1.0F;
+		}
+		if(ModPlugin.loadedHaCLib) {
+			IClimate clm = ClimateAPI.calculator.getClimate(worldIn, pos);
+			if(clm.getHeat().getTier() >= 3) {
+				chance /= 1.5F;
+			}
+			else if(clm.getHeat().getTier() <= -1) {
+				chance += 3.0F;
+			}
+			if(clm.getHumidity() == DCHumidity.DRY) {
+				chance /= 1.5F;
+			}
+			else if(clm.getHumidity() == DCHumidity.WET || clm.getHumidity() == DCHumidity.UNDERWATER) {
+				chance += 3.0F;
+			}
 		}
 		return chance;
 	}
