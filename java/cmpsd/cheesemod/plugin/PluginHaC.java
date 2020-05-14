@@ -5,8 +5,9 @@ import cmpsd.cheesemod.ModItem;
 import cmpsd.cheesemod.ModPlugin;
 import cmpsd.cheesemod.Reference;
 import cmpsd.cheesemod.item.ModFoodBase;
+import defeatedcrow.hac.api.climate.DCHeatTier;
+import defeatedcrow.hac.api.recipe.RecipeAPI;
 import defeatedcrow.hac.food.FoodInit;
-import defeatedcrow.hac.food.recipes.FoodFluidRecipe;
 import defeatedcrow.hac.main.MainInit;
 import mknutils.MKNUtils;
 import net.minecraft.init.Blocks;
@@ -58,28 +59,47 @@ public class PluginHaC {
 
 	private static void registerCollaboRecipes() {
 
-		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedApple), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.APPLE));
-		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedBakedPotato), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.BAKED_POTATO));
-		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedBread), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.BREAD));
-		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCarrot), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.CARROT)); // Attention(BOIL-OVEN)
-		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCookedBeef), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_BEEF));
-		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCookedChicken), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_CHICKEN));
-		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCookedCod), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_FISH, 1, 0));
-		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCookedMutton), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_MUTTON));
-		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCookedPorkchop), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_PORKCHOP));
-		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCookedRabbit), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_RABBIT));
-		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCookedSalmon), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_FISH, 1, 1));
-		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCookie), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKIE));
+		RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(ModItem.cheesedApple), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.APPLE));
+		RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(ModItem.cheesedBakedPotato), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.BAKED_POTATO));
+		RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(ModItem.cheesedBread), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.BREAD));
+		RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(ModItem.cheesedCarrot), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.CARROT));
+		RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(ModItem.cheesedCookedBeef), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_BEEF));
+		RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(ModItem.cheesedCookedChicken), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_CHICKEN));
+		RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(ModItem.cheesedCookedCod), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_FISH, 1, 0));
+		RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(ModItem.cheesedCookedMutton), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_MUTTON));
+		RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(ModItem.cheesedCookedPorkchop), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_PORKCHOP));
+		RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(ModItem.cheesedCookedRabbit), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_RABBIT));
+		RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(ModItem.cheesedCookedSalmon), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_FISH, 1, 1));
+		RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(ModItem.cheesedCookie), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKIE));
 
-		FoodFluidRecipe.regBoilrecipe(new ItemStack(cheesedBoiledEgg), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MainInit.bakedApple, 1, 1));
-		FoodFluidRecipe.regBoilrecipe(new ItemStack(cheesedBoiledSausage), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MainInit.bakedApple, 1, 3));
+		RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(cheesedBoiledEgg), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MainInit.bakedApple, 1, 1));
+		RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(cheesedBoiledSausage), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MainInit.bakedApple, 1, 3));
+
+
+//		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCarrot), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.CARROT)); // Attention(BOIL-OVEN)
+//		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCookedBeef), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_BEEF));
+//		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCookedChicken), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_CHICKEN));
+//		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCookedCod), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_FISH, 1, 0));
+//		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCookedMutton), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_MUTTON));
+//		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCookedPorkchop), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_PORKCHOP));
+//		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCookedRabbit), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_RABBIT));
+//		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCookedSalmon), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKED_FISH, 1, 1));
+//		FoodFluidRecipe.regBoilrecipe(new ItemStack(ModItem.cheesedCookie), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(Items.COOKIE));
+//
+//		FoodFluidRecipe.regBoilrecipe(new ItemStack(cheesedBoiledEgg), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MainInit.bakedApple, 1, 1));
+//		FoodFluidRecipe.regBoilrecipe(new ItemStack(cheesedBoiledSausage), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MainInit.bakedApple, 1, 3));
 
 		if(ModPlugin.loadedMKNUtils) {
 
-			FoodFluidRecipe.regBoilrecipe(new ItemStack(PluginMKNUtils.cheesedBoiledCrabLeg), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MKNUtils.foodmisc, 1, 16));
-			FoodFluidRecipe.regBoilrecipe(new ItemStack(PluginMKNUtils.cheesedChocolateBar), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MKNUtils.foodmisc, 1, 17));
-			FoodFluidRecipe.regBoilrecipe(new ItemStack(PluginMKNUtils.cheesedChocolateCookie), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MKNUtils.foodmisc, 1, 18));
-			FoodFluidRecipe.regBoilrecipe(new ItemStack(PluginMKNUtils.cheesedMilkCookie), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MKNUtils.foodmisc, 1, 9));
+			RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(PluginMKNUtils.cheesedBoiledCrabLeg), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MKNUtils.foodmisc, 1, 16));
+			RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(PluginMKNUtils.cheesedChocolateBar), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MKNUtils.foodmisc, 1, 17));
+			RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(PluginMKNUtils.cheesedChocolateCookie), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MKNUtils.foodmisc, 1, 18));
+			RecipeAPI.registerFluidRecipes.addRecipe(new ItemStack(PluginMKNUtils.cheesedMilkCookie), ItemStack.EMPTY, 0.0F, null, DCHeatTier.BOIL, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MKNUtils.foodmisc, 1, 9));
+
+//			FoodFluidRecipe.regBoilrecipe(new ItemStack(PluginMKNUtils.cheesedBoiledCrabLeg), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MKNUtils.foodmisc, 1, 16));
+//			FoodFluidRecipe.regBoilrecipe(new ItemStack(PluginMKNUtils.cheesedChocolateBar), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MKNUtils.foodmisc, 1, 17));
+//			FoodFluidRecipe.regBoilrecipe(new ItemStack(PluginMKNUtils.cheesedChocolateCookie), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MKNUtils.foodmisc, 1, 18));
+//			FoodFluidRecipe.regBoilrecipe(new ItemStack(PluginMKNUtils.cheesedMilkCookie), null, 0F, null, null, null, false, new FluidStack(ModFluid.fluidMeltedCheese, 100), new ItemStack(MKNUtils.foodmisc, 1, 9));
 		}
 	}
 }

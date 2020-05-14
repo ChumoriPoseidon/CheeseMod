@@ -3,7 +3,7 @@ package cmpsd.cheesemod;
 public class Reference {
 
 	public static final String MODID = "cheesemod";
-	public static final String VERSION = "1.0.5_1.12.2";
+	public static final String VERSION = "1.0.6_1.12.2";
 	public static final String NAME = "CheeseMod";
 	public static final String MC_VERSION = "[1.12.2]";
 
@@ -32,5 +32,9 @@ public class Reference {
 	 * -1.0.5
 	 * [change] new environment for aging "raw_cheese".
 	 * [fix] update "raw_cheese" on random ticks.
+	 *
+	 * -1.0.6
+	 * [change] environment suitable for "raw_cheese" again.
+	 * [fix] support for HeatAndClimateMod 3.x.x.
 	 */
 }

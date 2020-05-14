@@ -32,10 +32,16 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDesert;
+import net.minecraft.world.biome.BiomeEnd;
+import net.minecraft.world.biome.BiomeHell;
+import net.minecraft.world.biome.BiomeHills;
+import net.minecraft.world.biome.BiomeJungle;
 import net.minecraft.world.biome.BiomeMesa;
 import net.minecraft.world.biome.BiomeMushroomIsland;
 import net.minecraft.world.biome.BiomeSavanna;
+import net.minecraft.world.biome.BiomeSnow;
 import net.minecraft.world.biome.BiomeSwamp;
+import net.minecraft.world.biome.BiomeTaiga;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -84,35 +90,86 @@ public class RawCheese extends Block {
 
 	private float getChance(World worldIn, IBlockState state, BlockPos pos) {
 		float chance = 1.0F;
-		if(worldIn.getLightFromNeighbors(pos.up()) < 13) {
+		if(worldIn.getLightFromNeighbors(pos) < 13) {
 			chance += 1.0F;
 		}
-		Biome biome = worldIn.getBiome(pos);
-		if(biome instanceof BiomeDesert || biome instanceof BiomeMesa || biome instanceof BiomeSavanna) {
-			chance /= 2.0F;
+		if(pos.getY() >= 90) {
+			chance += 1.0F;
 		}
-		else if(biome instanceof BiomeSwamp) {
-			chance += 2.0F;
-		}
-		else if(biome instanceof BiomeMushroomIsland) {
-			chance += 4.0F;
+		float chanceTemperature = getChanceTemperature(worldIn, pos);
+		float chanceHumidity = getChanceHumidity(worldIn, pos);
+		chance += (chanceTemperature + chanceHumidity);
+		return chance;
+	}
+
+	public static float getChanceTemperature(World world, BlockPos pos) {
+		float chance = 1.0F;
+		if(ModPlugin.loadedHaCLib) {
+			if(world.getBiome(pos) instanceof BiomeMushroomIsland) {
+				chance += 2.0F;
+			}
+			else {
+				IClimate clm = ClimateAPI.calculator.getClimate(world, pos);
+				if(clm.getHeat().getTier() >= 3) {
+					chance /= 2.0F;
+				}
+				else if(clm.getHeat().getTier() <= -1) {
+					chance += 2.0F;
+				}
+			}
 		}
 		else {
-			chance += 1.0F;
+			Biome biome = world.getBiome(pos);
+			if(biome instanceof BiomeHell) {
+				chance /= 4.0F;
+			}
+			else if(biome instanceof BiomeDesert) {
+				if(world.isDaytime()) {
+					chance /= 2.0F;
+				}
+				else {
+					chance += 1.0F;
+				}
+			}
+			else if(biome instanceof BiomeMesa || biome instanceof BiomeSavanna) {
+				if(world.isDaytime()) {
+					chance /= 2.0F;
+				}
+			}
+			else if(biome instanceof BiomeTaiga || biome instanceof BiomeHills || biome instanceof BiomeSnow || biome instanceof BiomeEnd) {
+				chance += 2.0F;
+			}
+			else if(biome instanceof BiomeMushroomIsland) {
+				chance += 2.0F;
+			}
 		}
+		return chance;
+	}
+
+	public static float getChanceHumidity(World world, BlockPos pos) {
+		float chance = 1.0F;
 		if(ModPlugin.loadedHaCLib) {
-			IClimate clm = ClimateAPI.calculator.getClimate(worldIn, pos);
-			if(clm.getHeat().getTier() >= 3) {
-				chance /= 1.5F;
-			}
-			else if(clm.getHeat().getTier() <= -1) {
-				chance += 3.0F;
-			}
+			IClimate clm = ClimateAPI.calculator.getClimate(world, pos);
 			if(clm.getHumidity() == DCHumidity.DRY) {
-				chance /= 1.5F;
+				chance /= 2.0F;
 			}
 			else if(clm.getHumidity() == DCHumidity.WET || clm.getHumidity() == DCHumidity.UNDERWATER) {
-				chance += 3.0F;
+				chance += 2.0F;
+			}
+		}
+		else {
+			Biome biome = world.getBiome(pos);
+			if(biome instanceof BiomeHell) {
+				chance /= 4.0F;
+			}
+			else if(biome instanceof BiomeDesert || biome instanceof BiomeMesa || biome instanceof BiomeSavanna) {
+				chance /= 2.0F;
+			}
+			else if(biome instanceof BiomeJungle || biome instanceof BiomeSwamp) {
+				chance += 2.0F;
+			}
+			else if(biome instanceof BiomeMushroomIsland) {
+				chance += 2.0F;
 			}
 		}
 		return chance;
