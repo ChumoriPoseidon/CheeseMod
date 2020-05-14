@@ -81,30 +81,73 @@ public class RawCheese extends Block {
 	}
 
 	private float getChance(BlockState state, World world, BlockPos pos) {
-		float chance = 1.0F;
-//		if(!world.canBlockSeeSky(pos)) {
-//			chance += 1.0F;
-//		}
-//		if(world.getChunk(pos).getWorldLightManager().getLightEngine(LightType.SKY).getLightFor(pos) < 9) {
-//			chance += 1.0F;
-//		}
-		if(world.getLightSubtracted(pos, 0) < 13) {
+		float chance = 0.0F;
+		if (world.getLightSubtracted(pos, 0) < 13) {
 			chance += 1.0F;
 		}
-		switch(world.getBiome(pos).getCategory()) {
+		if(pos.getY() >= 90) {
+			chance += 1.0F;
+		}
+		float chanceTemp = getChanceTemperature(world, pos);
+		float chanceHumid = getChanceHumidity(world, pos);
+		chance += (chanceTemp + chanceHumid);
+		return chance;
+	}
+
+	public static float getChanceTemperature(World world, BlockPos pos) {
+		float chance = 1.0F;
+		switch (world.getBiome(pos).getCategory()) {
+		case NETHER:
+			chance /= 4.0F;
+			break;
 		case DESERT:
+			if (world.isDaytime()) {
+				chance /= 2.0F;
+			} else {
+				chance += 1.0F;
+			}
+			break;
 		case MESA:
 		case SAVANNA:
+			if (world.isDaytime()) {
+				chance /= 2.0F;
+			}
+			break;
+		case TAIGA:
+		case EXTREME_HILLS:
+		case ICY:
+		case THEEND:
+			chance += 2.0F;
+			break;
+		case MUSHROOM:
+			chance += 2.0F;
+			break;
+		default:
+			break;
+		}
+		return chance;
+	}
+
+	public static float getChanceHumidity(World world, BlockPos pos) {
+		float chance = 1.0F;
+		switch(world.getBiome(pos).getCategory()) {
+		case NETHER:
+			chance /= 4.0F;
+			break;
+		case MESA:
+		case SAVANNA:
+		case DESERT:
 			chance /= 2.0F;
 			break;
+		case JUNGLE:
 		case SWAMP:
 			chance += 2.0F;
 			break;
 		case MUSHROOM:
-			chance += 4.0F;
+			chance += 2.0F;
 			break;
 		default:
-			chance += 1.0F;
+			break;
 		}
 		return chance;
 	}
