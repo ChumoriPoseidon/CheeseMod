@@ -2,10 +2,10 @@
     "parent": "block/block",
     "ambientocclusion": false,
     "textures" : {
-        "particle": "cheesemod:block/fermented_barrel_side",
-        "bottom": "cheesemod:block/fermented_barrel_bottom",
-        "top": "cheesemod:block/fermented_barrel_top",
-        "side" : "cheesemod:block/fermented_barrel_side"
+        "particle": "cheesemod:block/fermenting_barrel_side",
+        "bottom": "cheesemod:block/fermenting_barrel_bottom",
+        "top": "cheesemod:block/fermenting_barrel_top",
+        "side" : "cheesemod:block/fermenting_barrel_side"
     },
     "elements": [
         {   "_comment": "side: West",

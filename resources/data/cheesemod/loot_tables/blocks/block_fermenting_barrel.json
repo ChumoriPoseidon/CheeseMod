@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "cheesemod:block_fermented_barrel"
+					"name": "cheesemod:block_fermenting_barrel"
 				}
 			],
 			"conditions": [

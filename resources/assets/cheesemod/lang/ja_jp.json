@@ -18,10 +18,10 @@
 	"block.cheesemod.block_cheese_cake": "チーズケーキ",
 	"block.cheesemod.block_cheese_fondue_pot": "チーズフォンデュ鍋",
 	"block.cheesemod.block_cheese_fondue_pot.cant_cook": "鍋は熱源の上か熱い環境に置いてください。",
-	"block.cheesemod.block_fermented_barrel": "発酵樽",
+	"block.cheesemod.block_fermenting_barrel": "発酵樽",
 	"block.cheesemod.block_liquid_cheese": "ドロドロチーズ",
 
-	"container.cheesemod.fermented_barrel": "発酵樽",
+	"container.cheesemod.fermenting_barrel": "発酵樽",
 
 	"fluid.cheesemod.fluid_liquid_cheese_still": "ドロドロチーズ",
 	"fluid.cheesemod.fluid_liquid_cheese_flow": "ドロドロチーズ",
