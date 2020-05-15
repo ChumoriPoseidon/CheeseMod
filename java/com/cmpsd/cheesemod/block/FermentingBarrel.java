@@ -3,7 +3,7 @@ package com.cmpsd.cheesemod.block;
 import java.util.Random;
 
 import com.cmpsd.cheesemod.CheeseMod.RegistryEvents;
-import com.cmpsd.cheesemod.tileentity.FermentedBarrelTileEntity;
+import com.cmpsd.cheesemod.tileentity.FermentingBarrelTileEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -18,6 +18,8 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
@@ -33,17 +35,19 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class FermentedBarrel extends ContainerBlock {
+public class FermentingBarrel extends ContainerBlock {
 
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_0_2;
 
 	protected static final VoxelShape SHAPE = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
 
-	public FermentedBarrel() {
+	public FermentingBarrel() {
 		super(Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F, 13.0F));
-		this.setRegistryName("block_fermented_barrel");
+		this.setRegistryName("block_fermenting_barrel");
 		this.setDefaultState(this.stateContainer.getBaseState().with(AGE, Integer.valueOf(0)));
 
 		RegistryEvents.BLOCKS.add(this);
@@ -52,14 +56,28 @@ public class FermentedBarrel extends ContainerBlock {
 
 	@Override
 	public TileEntity createNewTileEntity(IBlockReader worldIn) {
-		return new FermentedBarrelTileEntity();
+		return new FermentingBarrelTileEntity();
 	}
 
 	@Override
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if(!worldIn.isRemote) {
 			TileEntity tileEntity = worldIn.getTileEntity(pos);
-			if(tileEntity instanceof FermentedBarrelTileEntity) {
+			if(tileEntity instanceof FermentingBarrelTileEntity) {
+				FermentingBarrelTileEntity te_fermentingBarrel = (FermentingBarrelTileEntity)tileEntity;
+				FluidTank tank = te_fermentingBarrel.tank;
+				if(FluidUtil.interactWithFluidHandler(player, handIn, tank)) {
+					te_fermentingBarrel.decrProgress();
+					return ActionResultType.SUCCESS;
+				}
+
+				if(player.getHeldItem(handIn).getItem() == RegistryEvents.BACTERIA) {
+					te_fermentingBarrel.incrProgress();
+					player.getHeldItem(handIn).shrink(1);
+					player.inventory.placeItemBackInInventory(worldIn, new ItemStack(Items.GLASS_BOTTLE));
+					return ActionResultType.SUCCESS;
+				}
+
 				NetworkHooks.openGui((ServerPlayerEntity)player, (INamedContainerProvider)tileEntity, tileEntity.getPos());
 			}
 			else {

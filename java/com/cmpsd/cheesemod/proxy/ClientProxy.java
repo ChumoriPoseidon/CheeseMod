@@ -1,7 +1,7 @@
 package com.cmpsd.cheesemod.proxy;
 
 import com.cmpsd.cheesemod.CheeseMod.RegistryEvents;
-import com.cmpsd.cheesemod.container.FermentedBarrelScreen;
+import com.cmpsd.cheesemod.container.FermentingBarrelScreen;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
@@ -12,7 +12,7 @@ public class ClientProxy implements IProxy {
 
 	@Override
 	public void init() {
-		ScreenManager.registerFactory(RegistryEvents.FERMENTED_BARREL_CONTAINER, FermentedBarrelScreen::new);
+		ScreenManager.registerFactory(RegistryEvents.FERMENTING_BARREL_CONTAINER, FermentingBarrelScreen::new);
 	}
 
 	@Override

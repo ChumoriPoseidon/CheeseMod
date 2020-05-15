@@ -20,11 +20,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class FermentedBarrelScreen extends ContainerScreen<FermentedBarrelContainer> {
+public class FermentingBarrelScreen extends ContainerScreen<FermentingBarrelContainer> {
 
-	private static final ResourceLocation FERMENTED_BARREL_GUI_TEXTURES = new ResourceLocation(CheeseMod.MODID, "textures/gui/container/block_fermented_barrel.png");
+	private static final ResourceLocation FERMENTING_BARREL_GUI_TEXTURES = new ResourceLocation(CheeseMod.MODID, "textures/gui/container/block_fermenting_barrel.png");
 
-	public FermentedBarrelScreen(FermentedBarrelContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+	public FermentingBarrelScreen(FermentingBarrelContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
 		super(screenContainer, inv, titleIn);
 	}
 
@@ -45,7 +45,7 @@ public class FermentedBarrelScreen extends ContainerScreen<FermentedBarrelContai
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.minecraft.getTextureManager().bindTexture(FERMENTED_BARREL_GUI_TEXTURES);
+		this.minecraft.getTextureManager().bindTexture(FERMENTING_BARREL_GUI_TEXTURES);
 		int i = this.guiLeft;
 		int j = this.guiTop;
 		this.blit(i, j, 0, 0, this.xSize, this.ySize);

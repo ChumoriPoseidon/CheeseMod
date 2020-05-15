@@ -29,7 +29,7 @@
 	},
 	"rewards": {
 		"recipes": [
-			"cheesemod:fermented_barrel",
+			"cheesemod:fermenting_barrel",
 			"cheesemod:raw_cheese2"
 		]
 	},

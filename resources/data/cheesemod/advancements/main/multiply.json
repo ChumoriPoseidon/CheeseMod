@@ -8,7 +8,7 @@
 			"translate": "advancements.main.multiply.description"
 		},
 		"icon": {
-			"item": "cheesemod:block_fermented_barrel"
+			"item": "cheesemod:block_fermenting_barrel"
 		},
 		"frame": "goal",
 		"show_toast": true,
@@ -21,7 +21,7 @@
 			"conditions": {
 				"items": [
 					{
-						"item": "cheesemod:block_fermented_barrel"
+						"item": "cheesemod:block_fermenting_barrel"
 					}
 				]
 			}

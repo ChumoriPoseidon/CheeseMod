@@ -8,16 +8,16 @@ import org.apache.logging.log4j.Logger;
 
 import com.cmpsd.cheesemod.block.CheeseCake;
 import com.cmpsd.cheesemod.block.CheeseFonduePot;
-import com.cmpsd.cheesemod.block.FermentedBarrel;
+import com.cmpsd.cheesemod.block.FermentingBarrel;
 import com.cmpsd.cheesemod.block.RawCheese;
 import com.cmpsd.cheesemod.block.WholeCheese;
-import com.cmpsd.cheesemod.container.FermentedBarrelContainer;
+import com.cmpsd.cheesemod.container.FermentingBarrelContainer;
 import com.cmpsd.cheesemod.item.Bacteria;
 import com.cmpsd.cheesemod.item.CheesedFoodBase;
 import com.cmpsd.cheesemod.proxy.ClientProxy;
 import com.cmpsd.cheesemod.proxy.IProxy;
 import com.cmpsd.cheesemod.proxy.ServerProxy;
-import com.cmpsd.cheesemod.tileentity.FermentedBarrelTileEntity;
+import com.cmpsd.cheesemod.tileentity.FermentingBarrelTileEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -132,15 +132,15 @@ public class CheeseMod {
 		public static Block WHOLE_CHEESE;
 		public static Block CHEESE_CAKE;
 		public static Block CHEESE_FONDUE_POT;
-		public static Block FERMENTED_BARREL;
+		public static Block FERMENTING_BARREL;
 
 
 		// Container
-		public static ContainerType<FermentedBarrelContainer> FERMENTED_BARREL_CONTAINER;
+		public static ContainerType<FermentingBarrelContainer> FERMENTING_BARREL_CONTAINER;
 
 
 		// TileEntity
-		public static TileEntityType<FermentedBarrelTileEntity> FERMENTED_BARREL_TILEENTITY;
+		public static TileEntityType<FermentingBarrelTileEntity> FERMENTING_BARREL_TILEENTITY;
 
 
 		// Fluid
@@ -219,7 +219,7 @@ public class CheeseMod {
 			WHOLE_CHEESE = new WholeCheese();
 			CHEESE_CAKE = new CheeseCake();
 			CHEESE_FONDUE_POT = new CheeseFonduePot();
-			FERMENTED_BARREL = new FermentedBarrel();
+			FERMENTING_BARREL = new FermentingBarrel();
 
 			LIQUID_CHEESE_FLUID_BLOCK = (FlowingFluidBlock) new FlowingFluidBlock(() -> LIQUID_CHEESE_FLUID, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()) {
 
@@ -257,22 +257,22 @@ public class CheeseMod {
 		@SubscribeEvent
 		public static void onContainersRegistry(final RegistryEvent.Register<ContainerType<?>> event) {
 			// register a new container type here
-			FERMENTED_BARREL_CONTAINER = (ContainerType<FermentedBarrelContainer>)IForgeContainerType.create((windowId, inventory, extraData) -> {
-				return new FermentedBarrelContainer(windowId, inventory);
-			}).setRegistryName("containertype_fermented_barrel");
+			FERMENTING_BARREL_CONTAINER = (ContainerType<FermentingBarrelContainer>)IForgeContainerType.create((windowId, inventory, extraData) -> {
+				return new FermentingBarrelContainer(windowId, inventory);
+			}).setRegistryName("containertype_fermenting_barrel");
 
 			event.getRegistry().registerAll(
-					FERMENTED_BARREL_CONTAINER
+					FERMENTING_BARREL_CONTAINER
 					);
 		}
 
 		@SubscribeEvent
 		public static void onTileEntitysRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
 			// register a new tileentity type here
-			FERMENTED_BARREL_TILEENTITY = (TileEntityType<FermentedBarrelTileEntity>)TileEntityType.Builder.create(FermentedBarrelTileEntity::new, FERMENTED_BARREL).build(null).setRegistryName("tileentitytype_fermented_barrel");
+			FERMENTING_BARREL_TILEENTITY = (TileEntityType<FermentingBarrelTileEntity>)TileEntityType.Builder.create(FermentingBarrelTileEntity::new, FERMENTING_BARREL).build(null).setRegistryName("tileentitytype_fermenting_barrel");
 
 			event.getRegistry().registerAll(
-					FERMENTED_BARREL_TILEENTITY
+					FERMENTING_BARREL_TILEENTITY
 					);
 		}
 

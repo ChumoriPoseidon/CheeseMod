@@ -3,8 +3,8 @@ package com.cmpsd.cheesemod.tileentity;
 import java.util.Map;
 
 import com.cmpsd.cheesemod.CheeseMod.RegistryEvents;
-import com.cmpsd.cheesemod.block.FermentedBarrel;
-import com.cmpsd.cheesemod.container.FermentedBarrelContainer;
+import com.cmpsd.cheesemod.block.FermentingBarrel;
+import com.cmpsd.cheesemod.container.FermentingBarrelContainer;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -26,6 +26,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
@@ -38,7 +39,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
-public class FermentedBarrelTileEntity extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
+public class FermentingBarrelTileEntity extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
 
 	private static final int[] SLOTS_UP = new int[] {0};
 	private static final int[] SLOTS_DOWN = new int[] {2, 1};
@@ -63,17 +64,17 @@ public class FermentedBarrelTileEntity extends TileEntity implements ISidedInven
 		public int get(int index) {
 			switch(index) {
 			case 0:
-				return FermentedBarrelTileEntity.this.burnTime;
+				return FermentingBarrelTileEntity.this.burnTime;
 			case 1:
-				return FermentedBarrelTileEntity.this.burnTimeTotal;
+				return FermentingBarrelTileEntity.this.burnTimeTotal;
 			case 2:
-				return FermentedBarrelTileEntity.this.progress;
+				return FermentingBarrelTileEntity.this.progress;
 			case 3:
-				return FermentedBarrelTileEntity.this.progressTotal;
+				return FermentingBarrelTileEntity.this.progressTotal;
 			case 4:
-				return FermentedBarrelTileEntity.this.tank.getFluidAmount();
+				return FermentingBarrelTileEntity.this.tank.getFluidAmount();
 			case 5:
-				return FermentedBarrelTileEntity.this.tank.getCapacity();
+				return FermentingBarrelTileEntity.this.tank.getCapacity();
 			default:
 				return 0;
 			}
@@ -83,23 +84,23 @@ public class FermentedBarrelTileEntity extends TileEntity implements ISidedInven
 		public void set(int index, int value) {
 			switch(index) {
 			case 0:
-				FermentedBarrelTileEntity.this.burnTime = value;
+				FermentingBarrelTileEntity.this.burnTime = value;
 				break;
 			case 1:
-				FermentedBarrelTileEntity.this.burnTimeTotal = value;
+				FermentingBarrelTileEntity.this.burnTimeTotal = value;
 				break;
 			case 2:
-				FermentedBarrelTileEntity.this.progress = value;
+				FermentingBarrelTileEntity.this.progress = value;
 				break;
 			case 3:
-				FermentedBarrelTileEntity.this.progressTotal = value;
+				FermentingBarrelTileEntity.this.progressTotal = value;
 				break;
 			case 4:
-				FluidTank tank4 = FermentedBarrelTileEntity.this.tank;
+				FluidTank tank4 = FermentingBarrelTileEntity.this.tank;
 				tank4.fill(new FluidStack(Fluids.WATER, value), FluidAction.EXECUTE);
 				break;
 			case 5:
-				FluidTank tank5 = FermentedBarrelTileEntity.this.tank;
+				FluidTank tank5 = FermentingBarrelTileEntity.this.tank;
 				tank5.setCapacity(value);
 				break;
 			}
@@ -129,8 +130,8 @@ public class FermentedBarrelTileEntity extends TileEntity implements ISidedInven
 		map.put(item.asItem(), time);
 	}
 
-	public FermentedBarrelTileEntity() {
-		super(RegistryEvents.FERMENTED_BARREL_TILEENTITY);
+	public FermentingBarrelTileEntity() {
+		super(RegistryEvents.FERMENTING_BARREL_TILEENTITY);
 	}
 
 	@Override
@@ -193,12 +194,12 @@ public class FermentedBarrelTileEntity extends TileEntity implements ISidedInven
 
 	@Override
 	public Container createMenu(int id, PlayerInventory inventory, PlayerEntity player) {
-		return new FermentedBarrelContainer(id, inventory, this, this.data);
+		return new FermentingBarrelContainer(id, inventory, this, this.data);
 	}
 
 	@Override
 	public ITextComponent getDisplayName() {
-		return new TranslationTextComponent("container.cheesemod.fermented_barrel");
+		return new TranslationTextComponent("container.cheesemod.fermenting_barrel");
 	}
 
 	int elapsedTick = 0;
@@ -250,12 +251,12 @@ public class FermentedBarrelTileEntity extends TileEntity implements ISidedInven
 			if(flagBurning != this.isBurning()) {
 				update = true;
 				if(!this.isComplete()) {
-					this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(FermentedBarrel.AGE, Integer.valueOf(this.isBurning() ? 1 : 0)), 3);
+					this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(FermentingBarrel.AGE, Integer.valueOf(this.isBurning() ? 1 : 0)), 3);
 				}
 			}
 			if(flagComplete != this.isComplete()) {
 				update = true;
-				this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(FermentedBarrel.AGE, Integer.valueOf(this.isComplete() ? 2 : this.isBurning() ? 1 : 0)), 3);
+				this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(FermentingBarrel.AGE, Integer.valueOf(this.isComplete() ? 2 : this.isBurning() ? 1 : 0)), 3);
 			}
 		}
 		if(update) {
@@ -447,5 +448,17 @@ public class FermentedBarrelTileEntity extends TileEntity implements ISidedInven
 	@Override
 	public CompoundNBT getUpdateTag() {
 		return this.write(new CompoundNBT());
+	}
+
+	public void decrProgress() {
+		this.progress = (int)MathHelper.ceil(this.progress / 2.0D);
+		this.world.notifyBlockUpdate(this.pos,  this.getBlockState(), this.getBlockState(), 3);
+		this.markDirty();
+	}
+
+	public void incrProgress() {
+		this.progress += 1;
+		this.world.notifyBlockUpdate(this.pos,  this.getBlockState(), this.getBlockState(), 3);
+		this.markDirty();
 	}
 }
