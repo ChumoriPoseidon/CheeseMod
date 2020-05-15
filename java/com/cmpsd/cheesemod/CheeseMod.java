@@ -35,7 +35,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -49,14 +48,12 @@ import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-// The value here should match an entry in the META-INF/mods.toml file
+/*
+ * バグ・不具合等が無ければ1.14.4最終
+ */
 @Mod("cheesemod")
 public class CheeseMod {
 
@@ -64,50 +61,36 @@ public class CheeseMod {
 
 	public static IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
 
-	// Directly reference a log4j logger.
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = LogManager.getLogger();
 
 	public CheeseMod() {
-		// Register the setup method for modloading
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-		// Register the enqueueIMC method for modloading
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
-		// Register the processIMC method for modloading
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-		// Register the doClientStuff method for modloading
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+//		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
+//		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
+//		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-		// Register ourselves for server and other game events we are interested in
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(new ModEvent());
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {
-		// some preinit code
 		proxy.init();
 	}
 
-	private void doClientStuff(final FMLClientSetupEvent event) {
-		// do something that can only be done on the client
-	}
+//	private void doClientStuff(final FMLClientSetupEvent event) {
+//	}
+//
+//	private void enqueueIMC(final InterModEnqueueEvent event) {
+//	}
+//
+//	private void processIMC(final InterModProcessEvent event) {
+//	}
 
-	private void enqueueIMC(final InterModEnqueueEvent event) {
-		// some example code to dispatch IMC to another mod
-	}
+//	@SubscribeEvent
+//	public void onServerStarting(FMLServerStartingEvent event) {
+//	}
 
-	private void processIMC(final InterModProcessEvent event) {
-		// some example code to receive and process InterModComms from other mods
-	}
-
-	// You can use SubscribeEvent and let the Event Bus discover methods to call
-	@SubscribeEvent
-	public void onServerStarting(FMLServerStartingEvent event) {
-		// do something when the server starts
-	}
-
-	// You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
-	// Event bus for receiving Registry Events)
 	@SuppressWarnings("unchecked")
 	@Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
 	public static class RegistryEvents {
@@ -345,10 +328,10 @@ public class CheeseMod {
 			}.setRegistryName("fluid_liquid_cheese_flow");
 		}
 
-		@SubscribeEvent
-		public static void onRecipesRegistry(final RegistryEvent.Register<IRecipeSerializer<?>> event) {
-			// register a new recipe serializer here
-
-		}
+//		@SubscribeEvent
+//		public static void onRecipesRegistry(final RegistryEvent.Register<IRecipeSerializer<?>> event) {
+//			// register a new recipe serializer here
+//
+//		}
 	}
 }
