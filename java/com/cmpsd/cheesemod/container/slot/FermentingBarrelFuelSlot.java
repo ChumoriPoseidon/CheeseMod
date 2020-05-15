@@ -1,16 +1,16 @@
 package com.cmpsd.cheesemod.container.slot;
 
-import com.cmpsd.cheesemod.container.FermentedBarrelContainer;
+import com.cmpsd.cheesemod.container.FermentingBarrelContainer;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 
-public class FermentedBarrelFuelSlot extends Slot {
+public class FermentingBarrelFuelSlot extends Slot {
 
-	private final FermentedBarrelContainer container;
+	private final FermentingBarrelContainer container;
 
-	public FermentedBarrelFuelSlot(FermentedBarrelContainer containerIn, IInventory inventoryIn, int index, int xPosition, int yPosition) {
+	public FermentingBarrelFuelSlot(FermentingBarrelContainer containerIn, IInventory inventoryIn, int index, int xPosition, int yPosition) {
 		super(inventoryIn, index, xPosition, yPosition);
 		this.container = containerIn;
 	}

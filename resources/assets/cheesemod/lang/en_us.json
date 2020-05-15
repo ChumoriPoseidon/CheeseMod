@@ -18,10 +18,10 @@
 	"block.cheesemod.block_cheese_cake": "Cheese Cake",
 	"block.cheesemod.block_cheese_fondue_pot": "Cheese Fondue Pot",
 	"block.cheesemod.block_cheese_fondue_pot.cant_cook": "Place pot on heated block or in hot emvironment.",
-	"block.cheesemod.block_fermented_barrel": "Fermented Barrel",
+	"block.cheesemod.block_fermenting_barrel": "Fermenting Barrel",
 	"block.cheesemod.block_liquid_cheese": "Liquid Cheese",
 
-	"container.cheesemod.fermented_barrel": "Fermented Barrel",
+	"container.cheesemod.fermenting_barrel": "Fermenting Barrel",
 
 	"fluid.cheesemod.fluid_liquid_cheese_still": "Liquid Cheese",
 	"fluid.cheesemod.fluid_liquid_cheese_flow": "Liquid Cheese",

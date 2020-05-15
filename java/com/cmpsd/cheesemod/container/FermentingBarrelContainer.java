@@ -1,9 +1,9 @@
 package com.cmpsd.cheesemod.container;
 
 import com.cmpsd.cheesemod.CheeseMod.RegistryEvents;
-import com.cmpsd.cheesemod.container.slot.FermentedBarrelFuelSlot;
-import com.cmpsd.cheesemod.container.slot.FermentedBarrelResultSlot;
-import com.cmpsd.cheesemod.tileentity.FermentedBarrelTileEntity;
+import com.cmpsd.cheesemod.container.slot.FermentingBarrelFuelSlot;
+import com.cmpsd.cheesemod.container.slot.FermentingBarrelResultSlot;
+import com.cmpsd.cheesemod.tileentity.FermentingBarrelTileEntity;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -22,19 +22,19 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
-public class FermentedBarrelContainer extends Container {
+public class FermentingBarrelContainer extends Container {
 
 	private final IInventory inventory;
 	private final IIntArray data;
 	protected final World world;
 //	public final IntReferenceHolder fluidAmount = IntReferenceHolder.single();
 
-	public FermentedBarrelContainer(int id, PlayerInventory playerInventory) {
+	public FermentingBarrelContainer(int id, PlayerInventory playerInventory) {
 		this(id, playerInventory, new Inventory(3), new IntArray(6));
 	}
 
-	public FermentedBarrelContainer(int id, PlayerInventory playerInventory, IInventory inventoryIn, IIntArray dataIn) {
-		super(RegistryEvents.FERMENTED_BARREL_CONTAINER, id);
+	public FermentingBarrelContainer(int id, PlayerInventory playerInventory, IInventory inventoryIn, IIntArray dataIn) {
+		super(RegistryEvents.FERMENTING_BARREL_CONTAINER, id);
 		assertInventorySize(inventoryIn, 3);
 		assertIntArraySize(dataIn, 6);
 		this.inventory = inventoryIn;
@@ -42,8 +42,8 @@ public class FermentedBarrelContainer extends Container {
 		this.world = playerInventory.player.world;
 
 		this.addSlot(new Slot(inventoryIn, 0, 143, 17));
-		this.addSlot(new FermentedBarrelFuelSlot(this, inventoryIn, 1, 26, 53));
-		this.addSlot(new FermentedBarrelResultSlot(playerInventory.player, inventoryIn, 2, 143, 53));
+		this.addSlot(new FermentingBarrelFuelSlot(this, inventoryIn, 1, 26, 53));
+		this.addSlot(new FermentingBarrelResultSlot(playerInventory.player, inventoryIn, 2, 143, 53));
 
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 9; j++) {
@@ -134,7 +134,7 @@ public class FermentedBarrelContainer extends Container {
 	}
 
 	public boolean isFuel(ItemStack stack) {
-		return FermentedBarrelTileEntity.isFuel(stack);
+		return FermentingBarrelTileEntity.isFuel(stack);
 	}
 
 	@OnlyIn(Dist.CLIENT)

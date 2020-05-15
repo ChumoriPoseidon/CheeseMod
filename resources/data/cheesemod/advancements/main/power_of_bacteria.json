@@ -29,8 +29,9 @@
 	},
 	"rewards": {
 		"recipes": [
-			"cheesemod:fermented_barrel",
-			"cheesemod:raw_cheese2"
+			"cheesemod:fermenting_barrel",
+			"cheesemod:raw_cheese2",
+			"cheesemod:bacteria"
 		]
 	},
 	"requirements": [

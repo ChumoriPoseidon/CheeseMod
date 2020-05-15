@@ -5,11 +5,11 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 
-public class FermentedBarrelResultSlot extends Slot {
+public class FermentingBarrelResultSlot extends Slot {
 
 	private final PlayerEntity player;
 
-	public FermentedBarrelResultSlot(PlayerEntity playerIn, IInventory inventoryIn, int index, int xPosition, int yPosition) {
+	public FermentingBarrelResultSlot(PlayerEntity playerIn, IInventory inventoryIn, int index, int xPosition, int yPosition) {
 		super(inventoryIn, index, xPosition, yPosition);
 		this.player = playerIn;
 	}
