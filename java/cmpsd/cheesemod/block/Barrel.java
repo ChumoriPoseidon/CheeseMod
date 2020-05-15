@@ -15,6 +15,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -103,6 +104,8 @@ public class Barrel extends BlockContainer {
 						te_barrel.setField(2, te_barrel.getField(2) + 1);
 						worldIn.notifyBlockUpdate(pos, state, state, 3);
 						te_barrel.markDirty();
+						heldItem.shrink(1);
+						playerIn.inventory.placeItemBackInInventory(worldIn, new ItemStack(Items.GLASS_BOTTLE));
 						return true;
 					}
 				}

@@ -34,6 +34,7 @@ public class Reference {
 	 * [fix] update "raw_cheese" on random ticks.
 	 *
 	 * -1.0.6
+	 * [update] support for Forge from 14.23.5.2847 to 14.23.5.2854.
 	 * [change] environment suitable for "raw_cheese" again.
 	 * [fix] support for HeatAndClimateMod 3.x.x.
 	 */
