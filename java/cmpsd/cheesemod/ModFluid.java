@@ -4,20 +4,19 @@ import cmpsd.cheesemod.block.CheeseFondue;
 import cmpsd.cheesemod.block.ModBlockFluidBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fluids.BlockFluidClassic;
+import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ModFluid {
 
@@ -98,40 +97,42 @@ public class ModFluid {
 		FluidRegistry.addBucketForFluid(fluid);
 	}
 
+	@SideOnly(Side.CLIENT)
 	public static void registerModel() {
 
-		registeBlockFluidRender(blockFluidMeltedCheese);
+		ModelLoader.setCustomStateMapper(blockFluidMeltedCheese, new StateMap.Builder().ignore(BlockFluidBase.LEVEL).build());
+//		registeBlockFluidRender(blockFluidMeltedCheese);
 	}
 
-	public static void registeBlockFluidRender(BlockFluidClassic blockFluid) {
+//	public static void registeBlockFluidRender(BlockFluidClassic blockFluid) {
+//
+//		Item item = Item.getItemFromBlock(blockFluid);
+//		FluidStateMapper fluidStateMapper = new FluidStateMapper(blockFluid.getFluid());
+//
+//		ModelLoader.registerItemVariants(item);
+//		ModelLoader.setCustomMeshDefinition(item, fluidStateMapper);
+//		ModelLoader.setCustomStateMapper(blockFluid, fluidStateMapper);
+//	}
 
-		Item item = Item.getItemFromBlock(blockFluid);
-		FluidStateMapper fluidStateMapper = new FluidStateMapper(blockFluid.getFluid());
-
-		ModelLoader.registerItemVariants(item);
-		ModelLoader.setCustomMeshDefinition(item, fluidStateMapper);
-		ModelLoader.setCustomStateMapper(blockFluid, fluidStateMapper);
-	}
-
-	public static class FluidStateMapper extends StateMapperBase implements ItemMeshDefinition {
-
-		private final Fluid fluid;
-
-		public FluidStateMapper(Fluid fluid) {
-
-			this.fluid = fluid;
-		}
-
-		@Override
-		public ModelResourceLocation getModelLocation(ItemStack stack) {
-
-			return new ModelResourceLocation(new ResourceLocation(Reference.MODID, "block_fluid"), this.fluid.getName());
-		}
-
-		@Override
-		protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-
-			return new ModelResourceLocation(new ResourceLocation(Reference.MODID, "block_fluid"), this.fluid.getName());
-		}
-	}
+//	public static class FluidStateMapper extends StateMapperBase implements ItemMeshDefinition {
+//
+//		private final Fluid fluid;
+//
+//		public FluidStateMapper(Fluid fluid) {
+//
+//			this.fluid = fluid;
+//		}
+//
+//		@Override
+//		public ModelResourceLocation getModelLocation(ItemStack stack) {
+//
+//			return new ModelResourceLocation(new ResourceLocation(Reference.MODID, "block_fluid"), this.fluid.getName());
+//		}
+//
+//		@Override
+//		protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+//
+//			return new ModelResourceLocation(new ResourceLocation(Reference.MODID, "block_fluid"), this.fluid.getName());
+//		}
+//	}
 }

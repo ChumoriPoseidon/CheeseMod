@@ -3,8 +3,6 @@ package cmpsd.cheesemod.block;
 import cmpsd.cheesemod.ModTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -21,6 +19,6 @@ public class ModBlockFluidBase extends BlockFluidClassic {
 		fluid.setBlock(this);
 
 		GameRegistry.findRegistry(Block.class).register(this);
-		GameRegistry.findRegistry(Item.class).register(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+//		GameRegistry.findRegistry(Item.class).register(new ItemBlock(this).setRegistryName(this.getRegistryName()));
 	}
 }
