@@ -56,6 +56,10 @@ import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+/*
+ * TODO
+ * -チーズ入りバケツで悪性エフェクトを消せるように
+ */
 @Mod(CheeseMod.MODID)
 public class CheeseMod {
 
