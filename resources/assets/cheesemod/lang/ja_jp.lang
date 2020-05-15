@@ -30,7 +30,7 @@ fluid.meltedCheese=液体チーズ
 item.herbCheese.name=ハーブチーズ
 item.cheesedBoiledEgg.name=チーズがかかったゆで卵
 item.cheesedBoiledSausage.name=チーズがかかったソーセージ
-item.pizzaBread.name=ピザパン
+item.pizzaToast.name=ピザトースト
 
 item.cheesedBoiledCrabLeg.name=チーズがかかった茹でた蟹の脚
 item.cheesedChocolateBar.name=チーズがかかったチョコレートバー

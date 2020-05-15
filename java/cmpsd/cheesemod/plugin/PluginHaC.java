@@ -25,14 +25,14 @@ public class PluginHaC {
 	public static Item herbCheese;
 	public static Item cheesedBoiledEgg;
 	public static Item cheesedBoiledSausage;
-	public static Item pizzaBread;
+	public static Item pizzaToast;
 
 	public static void registerItems() {
 
 		herbCheese = new ModFoodBase("item_herb_cheese", "herbCheese", 3, 0.4F);
 		cheesedBoiledEgg = new ModFoodBase("item_cheesed_boiled_egg", "cheesedBoiledEgg", new ItemStack(MainInit.bakedApple, 1, 1));
 		cheesedBoiledSausage = new ModFoodBase("item_cheesed_boiled_sausage", "cheesedBoiledSausage", new ItemStack(MainInit.bakedApple, 1, 3));
-		pizzaBread = new ModFoodBase("item_pizza_bread", "pizzaBread", 5, 0.9F);
+		pizzaToast = new ModFoodBase("item_pizza_toast", "pizzaToast", 5, 0.9F);
 	}
 
 	public static void registerModels() {
@@ -40,7 +40,7 @@ public class PluginHaC {
 		ModItem.registerItemRender(herbCheese);
 		ModItem.registerItemRender(cheesedBoiledEgg);
 		ModItem.registerItemRender(cheesedBoiledSausage);
-		ModItem.registerItemRender(pizzaBread);
+		ModItem.registerItemRender(pizzaToast);
 	}
 
 	public static void registerRecipes(IForgeRegistry<IRecipe> registry) {
@@ -49,7 +49,7 @@ public class PluginHaC {
 				new ShapelessOreRecipe(new ResourceLocation("recipe_herb_cheese"), new ItemStack(herbCheese, 4), "bucketMilk", Items.NETHER_WART, Items.BOWL, Blocks.BROWN_MUSHROOM, new ItemStack(FoodInit.crops, 1, 9)).setRegistryName(Reference.MODID, "craft_herb_cheese0"),
 				new ShapelessOreRecipe(new ResourceLocation("recipe_herb_cheese"), new ItemStack(herbCheese, 4), "bucketMilk", Items.NETHER_WART, Items.BOWL, Blocks.RED_MUSHROOM, new ItemStack(FoodInit.crops, 1, 9)).setRegistryName("craft_herb_cheese1"),
 				new ShapelessOreRecipe(new ResourceLocation("recipe_herb_cheese"), new ItemStack(herbCheese, 2), ModItem.bacteria,  "bucketMilk", Items.BOWL, new ItemStack(FoodInit.crops, 1, 9)).setRegistryName("craft_herb_cheese2"),
-				new ShapelessOreRecipe(new ResourceLocation("recipe_pizza_bread"), new ItemStack(pizzaBread, 3), new ItemStack(FoodInit.bread, 1, 3), "cropTomato", ModItem.meltedCheese).setRegistryName("craft_pizza_bread"));
+				new ShapelessOreRecipe(new ResourceLocation("recipe_pizza_toast"), new ItemStack(pizzaToast, 3), new ItemStack(FoodInit.bread, 1, 3), "cropTomato", ModItem.meltedCheese).setRegistryName("craft_pizza_bread"));
 	}
 
 	public static void init() {

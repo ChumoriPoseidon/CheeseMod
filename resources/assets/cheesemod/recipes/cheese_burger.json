@@ -9,7 +9,8 @@
 			"item": "minecraft:cooked_beef"
 		},
 		{
-			"item": "minecraft:grass"
+			"item": "minecraft:tallgrass",
+			"data": 1
 		},
 		{
 			"item": "cheesemod:item_melted_cheese"

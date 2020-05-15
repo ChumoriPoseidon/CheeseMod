@@ -41,7 +41,7 @@ public class PluginMCE3 {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(PluginHaC.herbCheese), 150);
 			MCEconomyAPI.addPurchaseItem(new ItemStack(PluginHaC.cheesedBoiledEgg), 60);
 			MCEconomyAPI.addPurchaseItem(new ItemStack(PluginHaC.cheesedBoiledSausage), 110);
-			MCEconomyAPI.addPurchaseItem(new ItemStack(PluginHaC.pizzaBread), 60);
+			MCEconomyAPI.addPurchaseItem(new ItemStack(PluginHaC.pizzaToast), 60);
 		}
 	}
 }
