@@ -111,17 +111,20 @@ public class FermentedBarrelTileEntity extends TileEntity implements ISidedInven
 		}
 	};
 
+	@SuppressWarnings("deprecation")
 	public static Map<Item, Integer> getBurnTimes(){
 		Map<Item, Integer> map = AbstractFurnaceTileEntity.getBurnTimes();
 		return map;
 	}
 
+	@SuppressWarnings("unused")
 	private static void addItemTagBurnTime(Map<Item, Integer> map, Tag<Item> tag, int time) {
 		for(Item item : tag.getAllElements()) {
 			map.put(item, time);
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private static void addItemBurnTime(Map<Item, Integer> map, IItemProvider item, int time) {
 		map.put(item.asItem(), time);
 	}

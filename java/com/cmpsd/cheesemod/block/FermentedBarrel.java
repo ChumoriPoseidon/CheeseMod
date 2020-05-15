@@ -23,6 +23,7 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -55,7 +56,7 @@ public class FermentedBarrel extends ContainerBlock {
 	}
 
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if(!worldIn.isRemote) {
 			TileEntity tileEntity = worldIn.getTileEntity(pos);
 			if(tileEntity instanceof FermentedBarrelTileEntity) {
@@ -65,7 +66,7 @@ public class FermentedBarrel extends ContainerBlock {
 				throw new IllegalStateException("Out named container provider is missing!");
 			}
 		}
-		return true;
+		return ActionResultType.SUCCESS;
 	}
 
 	@SuppressWarnings("deprecation")

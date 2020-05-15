@@ -18,11 +18,15 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biomes;
 import net.minecraftforge.api.distmarker.Dist;
@@ -38,9 +42,10 @@ import net.minecraftforge.items.ItemHandlerHelper;
 public class CheeseFonduePot extends Block {
 
 	public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, 8);
+	protected static final VoxelShape SHAPE = VoxelShapes.or(makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), makeCuboidShape(4.0D, 3.0D, 4.0D, 12.0D, 12.0D, 12.0D), makeCuboidShape(6.0D, 3.0D, 6.0D, 10.0D, 16.0D, 10.0D));
 
 	public CheeseFonduePot() {
-		super(Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F));
+		super(Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).notSolid());
 		this.setRegistryName("block_cheese_fondue_pot");
 		this.setDefaultState(this.stateContainer.getBaseState().with(LEVEL, Integer.valueOf(0)));
 
@@ -49,10 +54,13 @@ public class CheeseFonduePot extends Block {
 	}
 
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		ItemStack stack = player.getHeldItem(handIn);
 		if(worldIn.isRemote) {
-			return !stack.isEmpty();
+			if(!stack.isEmpty()) {
+				return ActionResultType.CONSUME;
+			}
+			return ActionResultType.PASS;
 		}
 		else {
 			if(!stack.isEmpty()) {
@@ -60,20 +68,20 @@ public class CheeseFonduePot extends Block {
 				int max = 8;
 				if(meta > 0) {
 					if(meta == max && this.unloadCheese(state, worldIn, pos, player, handIn, stack, meta)) {
-						return true;
+						return ActionResultType.SUCCESS;
 					}
 					if(this.cookCheesedFood(state, worldIn, pos, player, stack, meta, max)) {
-						return true;
+						return ActionResultType.SUCCESS;
 					}
 				}
 				if(meta < max) {
 					if(this.meltCheese(state, worldIn, pos, player, handIn, stack, meta, max)) {
-						return true;
+						return ActionResultType.SUCCESS;
 					}
 				}
 			}
 		}
-		return false;
+		return ActionResultType.PASS;
 	}
 
 	private boolean unloadCheese(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack stack, int meta) {
@@ -177,18 +185,13 @@ public class CheeseFonduePot extends Block {
 	}
 
 	@Override
-	public boolean isSolid(BlockState state) {
-		return false;
-	}
-
-	@Override
 	protected void fillStateContainer(Builder<Block, BlockState> builder) {
 		builder.add(LEVEL);
 	}
 
 	@Override
-	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.CUTOUT;
+	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+		return SHAPE;
 	}
 
 	@OnlyIn(Dist.CLIENT)

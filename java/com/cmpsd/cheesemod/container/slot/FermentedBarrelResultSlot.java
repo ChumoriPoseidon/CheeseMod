@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 
 public class FermentedBarrelResultSlot extends Slot {
 
+	@SuppressWarnings("unused")
 	private final PlayerEntity player;
 
 	public FermentedBarrelResultSlot(PlayerEntity playerIn, IInventory inventoryIn, int index, int xPosition, int yPosition) {

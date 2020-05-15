@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -24,6 +25,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 public class RawCheese extends Block {
 
@@ -40,41 +42,24 @@ public class RawCheese extends Block {
 	}
 
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if(!worldIn.isRemote) {
-//			if(player.isSneaking()) {
-//				int meta = state.get(AGE);
-//				float chance = this.getChance(state, worldIn, pos);
-//				player.sendMessage(new StringTextComponent("AGE: " + meta + ", Chance: " + chance));
-//				if(this.RANDOM.nextInt((int)(25.0F / chance) + 1) == 0) {
-//					meta++;
-//					if(meta > 7) {
-//						worldIn.setBlockState(pos, RegistryEvents.WHOLE_CHEESE.getDefaultState(), 3);
-//					}
-//					else {
-//						worldIn.setBlockState(pos, state.with(AGE, meta), 3);
-//					}
-//				}
-//			}
-//			else {
-				player.sendStatusMessage(new StringTextComponent(new TranslationTextComponent("block.cheesemod.block_raw_cheese.get_age").getFormattedText() + state.get(AGE) + " / 8"), true);
-//			}
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+		if (!worldIn.isRemote) {
+			player.sendStatusMessage(new StringTextComponent(new TranslationTextComponent("block.cheesemod.block_raw_cheese.get_age").getFormattedText() + state.get(AGE) + " / 8"), true);
 		}
-		return true;
+		return ActionResultType.SUCCESS;
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		super.tick(state, worldIn, pos, random);
 		int meta = state.get(AGE);
 		float chance = this.getChance(state, worldIn, pos);
-		if(random.nextInt((int)(25.0F / chance) + 1) == 0) {
+		if (random.nextInt((int) (25.0F / chance) + 1) == 0) {
 			meta++;
-			if(meta > 7) {
+			if (meta > 7) {
 				worldIn.setBlockState(pos, RegistryEvents.WHOLE_CHEESE.getDefaultState(), 3);
-			}
-			else {
+			} else {
 				worldIn.setBlockState(pos, state.with(AGE, meta), 3);
 			}
 		}
@@ -103,7 +88,7 @@ public class RawCheese extends Block {
 		case DESERT:
 			if (world.isDaytime()) {
 				chance /= 2.0F;
-			} else {
+			} else if (world.isNightTime()) {
 				chance += 1.0F;
 			}
 			break;

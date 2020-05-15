@@ -18,6 +18,7 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -50,14 +51,17 @@ public class CheeseCake extends Block {
 	}
 
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if(!worldIn.isRemote) {
-			return this.eatCake(worldIn, pos, state, player);
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+		ItemStack stack = player.getHeldItem(handIn);
+		if(worldIn.isRemote) {
+			if(stack.isEmpty()) {
+				return ActionResultType.CONSUME;
+			}
 		}
-		else {
-			ItemStack stack = player.getHeldItem(handIn);
-			return this.eatCake(worldIn, pos, state, player) || stack.isEmpty();
+		if(this.eatCake(worldIn, pos, state, player)) {
+			return ActionResultType.SUCCESS;
 		}
+		return ActionResultType.PASS;
 	}
 
 	private boolean eatCake(IWorld worldIn, BlockPos pos, BlockState state, PlayerEntity player) {

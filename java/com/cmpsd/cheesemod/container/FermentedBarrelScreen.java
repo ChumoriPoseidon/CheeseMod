@@ -4,15 +4,16 @@ import java.util.ArrayList;
 
 import com.cmpsd.cheesemod.CheeseMod;
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.AtlasTexture;
+import net.minecraft.client.renderer.texture.Texture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -40,6 +41,7 @@ public class FermentedBarrelScreen extends ContainerScreen<FermentedBarrelContai
 		this.renderHoveredToolTip(mouseX, mouseY);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -58,42 +60,32 @@ public class FermentedBarrelScreen extends ContainerScreen<FermentedBarrelContai
 	int time = 0;
 
 	private void renderFluid(int x, int y, int scale) {
-		this.minecraft.getTextureManager().bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
-		AtlasTexture atlasTexture = this.minecraft.getTextureMap();
-		TextureAtlasSprite tas = atlasTexture.getSprite(Fluids.WATER.getStillFluid().getAttributes().getStillTexture());
-		float uMin = tas.getMinU();
-		float uMax = tas.getMaxU();
-		float vMin = tas.getMinV();
-		float vMax = tas.getMaxV();
+		Texture texture = this.getMinecraft().getTextureManager().getTexture(PlayerContainer.LOCATION_BLOCKS_TEXTURE);
+		if(texture instanceof AtlasTexture) {
+			TextureAtlasSprite sprite = ((AtlasTexture)texture).getSprite(Fluids.WATER.getStillFluid().getAttributes().getStillTexture());
+			if(sprite != null) {
+				this.getMinecraft().getTextureManager().bindTexture(PlayerContainer.LOCATION_BLOCKS_TEXTURE);
+				int color = Fluids.WATER.getStillFluid().getAttributes().getColor();
+				float redBase = (color >> 16 & 0xFF) / 255.0F;
+				float greenBase = (color >> 8 & 0xFF) / 255.0F;
+				float blueBase = (color & 0xFF) / 255.0F;
+				float alpha = ((color >> 24) & 0xFF) / 255F;
 
-		int color = Fluids.WATER.getStillFluid().getAttributes().getColor();
-		float redBase = (color >> 16 & 0xFF) / 255.0F;
-		float greenBase = (color >> 8 & 0xFF) / 255.0F;
-		float blueBase = (color & 0xFF) / 255.0F;
-		float alpha = ((color >> 24) & 0xFF) / 255F;
+				int progress = this.container.getProgress();
+				float red = redBase + (1.0F - redBase) / 100.0F * progress;
+				float green = greenBase + (1.0F - greenBase) / 100.0F * progress;
+				float blue = blueBase + (1.0F - blueBase) / 100.0F * progress;
+				RenderSystem.color4f(red, green, blue, alpha);
+				RenderSystem.enableBlend();
+				RenderSystem.enableAlphaTest();
 
-		int progress = this.container.getProgress();
-		float red = redBase + (1.0F - redBase) / 100.0F * progress;
-		float green = greenBase + (1.0F - greenBase) / 100.0F * progress;
-		float blue = blueBase + (1.0F - blueBase) / 100.0F * progress;
+				Screen.blit(x, y - scale, 0, 40, scale, sprite);
 
-		GlStateManager.enableBlend();
-		GlStateManager.enableAlphaTest();
-
-		GlStateManager.color4f(red, green, blue, alpha);
-
-		Tessellator tessellator = Tessellator.getInstance();
-		BufferBuilder bb = tessellator.getBuffer();
-		float z = this.itemRenderer.zLevel;
-		bb.begin(7, DefaultVertexFormats.POSITION_TEX);
-		bb.pos(x, y, z).tex(uMin, vMax).endVertex();
-		bb.pos(x + 40, y, z).tex(uMax, vMax).endVertex();
-		bb.pos(x + 40, y - scale, z).tex(uMax, vMin).endVertex();
-		bb.pos(x, y - scale, z).tex(uMin, vMin).endVertex();
-		tessellator.draw();
-
-		GlStateManager.disableAlphaTest();
-		GlStateManager.disableBlend();
+				RenderSystem.disableAlphaTest();
+				RenderSystem.disableBlend();
+				RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+			}
+		}
 	}
 
 	@Override

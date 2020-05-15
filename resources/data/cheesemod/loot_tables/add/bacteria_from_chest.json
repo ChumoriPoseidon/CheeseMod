@@ -1,0 +1,19 @@
+{
+	"__comment": "This loot is added to [minecraft:chests/village/-]",
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "cheesemod:item_bacteria",
+					"weight": 20
+				},
+				{
+					"type": "empty",
+					"weight": 80
+				}
+			]
+		}
+	]
+}

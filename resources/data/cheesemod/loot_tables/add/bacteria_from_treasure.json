@@ -1,0 +1,14 @@
+{
+	"__comment": "This loot is added to [minecraft:chests/desert_pyramid] & [minecraft:chests/jungle_temple] & [minecraft:chests/shipwreck_treasure]",
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "cheesemod:item_bacteria"
+				}
+			]
+		}
+	]
+}
